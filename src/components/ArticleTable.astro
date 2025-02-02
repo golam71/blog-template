@@ -1,0 +1,44 @@
+---
+const { frontmatter, headings } = Astro.props;
+---
+
+<h1>{frontmatter.title}</h1>
+<table class="article-table">
+    <tbody>
+        <tr>
+            <td><strong>Date :</strong></td>
+            <td>{frontmatter.pubDate.toString().slice(0, 10)}</td>
+        </tr>
+        <tr>
+            <td><strong>Author :</strong></td>
+            <td>{frontmatter.author}</td>
+        </tr>
+        <tr>
+            <td><strong>Tags :</strong></td>
+            <td>
+                <div class="tags">
+                    {
+                        frontmatter.tags.map((tag: string) => (
+                            <span data-key={tag} class="tag">
+                                <a href={`/tags/${tag}`}>{tag}</a>
+                            </span>
+                        ))
+                    }
+                </div>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<style>
+    a {
+        display: inline-block;
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--main-bg);
+        background-color: var(--accent);
+        border-radius: 20px;
+        padding: 0px 10px;
+        margin: 2px;
+    }
+</style>

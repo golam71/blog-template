@@ -1,0 +1,93 @@
+---
+const { headings } = Astro.props;
+// You can't find headings in any other place except the layout, just using as a placeholder
+// In the actual src/layouts/MarkdownPostLayout.astro, it's passed like this:
+//     <TableOfContents headings={headings} />
+---
+
+<div class="table-of-contents">
+    <h3>Table of Contents</h3>
+    <div class="links">
+        {
+            headings.map((item: any) => (
+                <a
+                    href={`#${item.slug}`}
+                    class="toc-item"
+                    style={
+                        item.depth > 2
+                            ? `padding-left: ${(item.depth - 2) * 20}px;`
+                            : ""
+                    }
+                >
+                    {item.text}
+                </a>
+            ))
+        }
+    </div>
+</div>
+
+<style>
+    .table-of-contents {
+        padding: 0px 10px;
+        z-index: 9999;
+        background-color: var(--dark-bg);
+        position: fixed !important;
+        top: 0px; /* Default top for screens larger than 1200px */
+        right: 0px;
+        width: 250px;
+        height: 100vh;
+        overflow-y: auto;
+        transition: top 0.3s ease; /* Smooth transition for top */
+    }
+
+    .table-of-contents h3 {
+        position: sticky;
+        top: 0;
+        background-color: var(--dark-bg);
+    }
+
+    .toc-item {
+        display: block !important;
+    }
+
+    a.toc-item {
+        color: var(--text);
+    }
+
+    a.toc-item:hover,
+    a.toc-item:active {
+        color: var(--accent);
+    }
+
+    @media screen and (min-width: 1000px) {
+        .table-of-contents h3 {
+            padding-top: 10px;
+            background-color: var(--dark-bg);
+        }
+        .table-of-contents {
+            top: 0px; /* Always 0px for smaller screens */
+            left: calc(20vw + 0px);
+            padding: 0px 20px;
+            background-color: var(--dark-bg);
+        }
+    }
+</style>
+
+<script is:inline>
+    console.log(3);
+    document.addEventListener("scroll", () => {
+        const toc = document.querySelector(".table-of-contents");
+
+        if (window.innerWidth > 1280) {
+            // Animation effect for large screens (1200px+)
+            if (window.scrollY > 50) {
+                toc.style.top = "0px"; // Scroll down to top: 0px
+            } else {
+                toc.style.top = "100px"; // Scroll back to top: 100px
+            }
+        } else {
+            // No animation for smaller screens (less than 1200px)
+            toc.style.top = "0px";
+        }
+    });
+</script>

@@ -1,0 +1,154 @@
+:root {
+	--main-bg: #111927;
+	--text: #a4b1cd;
+	--accent: #9fef00;
+	--dark-bg: #0b121f;
+	--heading: #cad2e2;
+
+	--radius: 10px;
+}
+
+html {
+	display: flex;
+	justify-content: center;
+}
+
+body {
+	width: calc(100% - 2rem);
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	background-color: var(--main-bg);
+	color: var(--text);
+	line-height: 2;
+}
+
+.main-stuff > main {
+	width: 350px;
+}
+
+@media screen and (min-width: 700px) {
+	.main-stuff > main {
+		width: 700px !important;
+	}
+	body {
+		font-size: 18px;
+	}
+}
+
+img {
+	border-radius: var(--radius);
+	margin: 0 auto;
+	max-width: 100%;
+}
+
+a {
+	color: var(--accent);
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: var(--heading);
+	margin-top: 10px;
+}
+
+blockquote {
+	background-color: var(--dark-bg);
+	border-radius: var(--radius);
+	border-left: 4px solid var(--accent);
+	padding: 1px 20px;
+	margin: 0 auto;
+}
+
+/* inline code */
+code:not(.astro-code code) {
+	background-color: var(--dark-bg);
+	color: var(--accent);
+}
+
+/*multiline code */
+.astro-code {
+	padding: 10px;
+  font-size: 13px;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	border-radius: var(--radius);
+}
+/* // code with line numbers  */
+code {
+  counter-reset: step;
+  counter-increment: step 0;
+}
+
+code .line::before {
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115,138,148,.4)
+}
+
+li::marker {
+	color: var(--accent);
+}
+
+.nav-links {
+	display: flex;
+	justify-content: center;
+}
+
+.nav-links > * {
+	margin: 10px;
+}
+
+::selection {
+	background-color: var(--accent);
+	color: var(--main-bg);
+}
+
+/*scrollbar */
+
+* {
+	scrollbar-color: var(--accent) var(--dark-bg);
+	scrollbar-width: 5px;
+}
+
+/*table*/
+
+tr {
+	border: 2px solid var(--text);
+	border-radius: var(radius);
+	border-collapse: collapse;
+}
+
+td {
+	min-width: 100px;
+}
+
+/*tags */
+p.tag {
+	display: inline;
+}
+p.tag a {
+	display: inline-block;
+	font-size: 15px;
+	font-weight: bold;
+	color: var(--main-bg);
+	background-color: var(--accent);
+	border-radius: 20px;
+	padding: 0px 10px;
+	margin: 5px;
+}
+
+/* transitions animations  */
+* {
+	transition: all 0.3s ease;
+}
