@@ -31,8 +31,9 @@ golam!
         margin: 0px 10px;
     }
     .round-button:hover {
-        transform: translateY(-5px);
-        /* border: 3px dotted var(--accent); */
+        transform: scale(1.2);
+        transition: transform 0.1 ease;
+        /* border: 3px solid var(--heading); */
         /* color: var(--accent); */
     }
     .round-button:active {
@@ -54,20 +55,20 @@ golam!
         right: 10px;
     }
 
-    .visibility {
+    /* .visibility {
         opacity: 0.2;
-    }
-
+    } */
+    /* 
     .round-btn-container:hover,
     .round-btn-container:active,
     .round-btn-container:focus {
         opacity: 100;
-    }
+    } */
 
     /* classes for js */
     .active-state {
         color: var(--accent);
-        border: 3px dotted var(--accent);
+        border: 3px solid var(--accent);
     }
     /* button hide */
     .rotate {
