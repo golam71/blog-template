@@ -19,6 +19,8 @@ After spending considerable time working with different Command & Control (C2) f
 
 So, that really got me thinking: why do we even perform attacks on Active Directory from Windows? 
 
+
+
 ## Overview
 
 Throughout my time working on AD labs and helping out my friends with their labs, I realized something: **Windows is extremely hard to debug**. 

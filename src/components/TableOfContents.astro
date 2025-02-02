@@ -5,8 +5,9 @@ const { headings } = Astro.props;
 //     <TableOfContents headings={headings} />
 ---
 
-<div class="table-of-contents">
+<div class="table-of-contents" id="table-of-contents">
     <h3>Table of Contents</h3>
+
     <div class="links">
         {
             headings.map((item: any) => (
@@ -29,15 +30,21 @@ const { headings } = Astro.props;
 <style>
     .table-of-contents {
         padding: 0px 10px;
-        z-index: 9999;
+        z-index: 5;
         background-color: var(--dark-bg);
         position: fixed !important;
-        top: 0px; /* Default top for screens larger than 1200px */
-        right: 0px;
+        top: 0px;
+        right: -100vw;
         width: 250px;
         height: 100vh;
         overflow-y: scroll;
         transition: top 0.3s ease; /* Smooth transition for top */
+        transition: right 0.3s ease; /* Smooth transition for top */
+    }
+
+    .show-table-of-contents {
+        display: fixed;
+        right: 0px !important;
     }
 
     .table-of-contents h3 {
@@ -74,6 +81,9 @@ const { headings } = Astro.props;
             padding: 0px 20px;
             background-color: var(--main-bg);
         }
+    }
+    .hidden {
+        display: none;
     }
 </style>
 

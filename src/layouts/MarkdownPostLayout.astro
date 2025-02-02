@@ -2,6 +2,7 @@
 import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import ArticleTable from "../components/ArticleTable.astro";
+import CircleButton from "../components/CircleButton.astro";
 const { frontmatter } = Astro.props;
 const { headings } = Astro.props;
 ---
@@ -14,11 +15,11 @@ const { headings } = Astro.props;
     </main>
     <TableOfContents headings={headings} />
   </div>
+  <CircleButton />
 </BaseLayout>
 <style>
-.main-stuff {
+  .main-stuff {
     display: flex;
     justify-content: center;
   }
-
 </style>
