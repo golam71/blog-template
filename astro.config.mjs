@@ -10,11 +10,12 @@ import hackthebox from "./hackthebox.json";
 
 // https://astro.build/config
 export default defineConfig({
-  // site: "https://example.com",
-  integrations: [preact(), mdx(), icon()],
-  markdown: {
-    shikiConfig: {
-      theme: hackthebox,
-    },
-  },
+	base: "/ssg",
+	// site: "https://example.com",
+	integrations: [preact(), mdx(), icon()],
+	markdown: {
+		shikiConfig: {
+			theme: JSON.parse(JSON.stringify(hackthebox)),
+		},
+	},
 });
