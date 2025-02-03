@@ -12,11 +12,10 @@ export async function getStaticPaths() {
 
 // heading is undefined here how to fix?
 const { post } = Astro.props;
-const { Content } = await render(post);
+const { Content, headings } = await render(post);
 ---
 
 <!-- since heading is undefine i cant pass it here  -->
-
-<MarkdownPostLayout frontmatter={post.data}>
+<MarkdownPostLayout frontmatter={post.data} headings={headings}>
   <Content />
 </MarkdownPostLayout>

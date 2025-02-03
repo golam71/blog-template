@@ -20,7 +20,11 @@ const { frontmatter } = Astro.props;
                     {
                         frontmatter.tags.map((tag: string) => (
                             <span data-key={tag} class="tag">
-                                <a href={`/tags/${tag}`}>{tag}</a>
+                                <a
+                                    href={`${import.meta.env.BASE_URL}/tags/${tag}`}
+                                >
+                                    {tag}
+                                </a>
                             </span>
                         ))
                     }
@@ -31,7 +35,6 @@ const { frontmatter } = Astro.props;
 </table>
 
 <style>
-
     a {
         display: inline-block;
         font-size: 15px;
