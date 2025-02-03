@@ -10,7 +10,7 @@ import hackthebox from "./hackthebox.json";
 
 // https://astro.build/config
 export default defineConfig({
-	base: "/ssg",
+	base: "/blog-template",
 	// site: "https://example.com",
 	integrations: [preact(), mdx(), icon()],
 	markdown: {
