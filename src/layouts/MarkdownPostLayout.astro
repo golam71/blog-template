@@ -3,8 +3,7 @@ import BaseLayout from "./BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import ArticleTable from "../components/ArticleTable.astro";
 import CircleButton from "../components/CircleButton.astro";
-const { frontmatter } = Astro.props;
-const { headings } = Astro.props;
+const { frontmatter, headings } = Astro.props;
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
