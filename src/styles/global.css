@@ -152,3 +152,14 @@ p.tag a {
 * {
 	transition: all 0.3s ease;
 }
+
+
+:root {
+	--main-bg: #0d0221;  /* Deep dark purple/blue */
+	--text: #f8f8f8;  /* Bright white text */
+	--accent: #ff007f;  /* Neon pink accent */
+	--dark-bg: #20013b;  /* Secondary dark background */
+	--heading: #00eaff;  /* Electric cyan for headings */
+	--radius: 10px; /* Keeping this as you said */
+  }
+   
