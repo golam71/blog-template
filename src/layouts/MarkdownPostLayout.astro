@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "./BaseLayout.astro";
+import BlogsLinkTable from "../components/BlogsLinkTable.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import ArticleTable from "../components/ArticleTable.astro";
 import CircleButton from "../components/CircleButton.astro";
@@ -10,6 +11,7 @@ const { frontmatter, headings } = Astro.props;
   <div class="main-stuff">
     <main>
       <ArticleTable frontmatter={frontmatter} />
+      <BlogsLinkTable />
       <slot />
     </main>
     <TableOfContents headings={headings} />

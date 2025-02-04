@@ -5,31 +5,58 @@
 	--dark-bg: #0b121f;
 	--heading: #cad2e2;
 
+	--opacity: 50%;
+	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
 	--radius: 10px;
-}
-
-html {
-	display: flex;
-	justify-content: center;
+	--table-border-width: 2px;
 }
 
 body {
-	width: calc(100% - 2rem);
 	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 	background-color: var(--main-bg);
 	color: var(--text);
 	line-height: 2;
 }
 
+hr {
+	opacity: var(--opacity);
+	display: block;
+	height: 1px;
+	border: 0;
+	border-top: 1px solid var(--text);
+	margin: 1em 0;
+	padding: 0;
+}
+
 .main-stuff > main {
-	width: 350px;
+	display: flex;
+	flex-direction: column;
+	align-self: center;
+	padding: 10px;
+	width: 310px;
+}
+
+@media screen and (min-width: 350px) {
+	.main-stuff > main {
+		width: 340px;
+	}
+}
+@media screen and (min-width: 400px) {
+	.main-stuff > main {
+		width: 400px;
+	}
 }
 
 @media screen and (min-width: 700px) {
+	.astro-code {
+		font-size: 16px;
+	}
 	.main-stuff > main {
 		width: 700px !important;
 	}
-	body {
+	.main-stuff > main {
+		width: 700px;
+		padding: 0px 20px;
 		font-size: 18px;
 	}
 }
@@ -76,24 +103,24 @@ code:not(.astro-code code) {
 /*multiline code */
 .astro-code {
 	padding: 10px;
-  font-size: 13px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+	font-size: 13px;
+	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 	border-radius: var(--radius);
 }
 /* // code with line numbers  */
 code {
-  counter-reset: step;
-  counter-increment: step 0;
+	counter-reset: step;
+	counter-increment: step 0;
 }
 
 code .line::before {
-  content: counter(step);
-  counter-increment: step;
-  width: 1rem;
-  margin-right: 1.5rem;
-  display: inline-block;
-  text-align: right;
-  color: rgba(115,138,148,.4)
+	content: counter(step);
+	counter-increment: step;
+	width: 1rem;
+	margin-right: 1.5rem;
+	display: inline-block;
+	text-align: right;
+	color: rgba(115, 138, 148, 0.4);
 }
 
 li::marker {
@@ -122,15 +149,68 @@ li::marker {
 }
 
 /*table*/
-
-tr {
-	border: 2px solid var(--text);
-	border-radius: var(radius);
-	border-collapse: collapse;
+table {
+	width: 100%;
+	border-spacing: 0;
+}
+td,
+th {
+	padding: 5px 10px !important;
+	border: calc(var(--table-border-width) / 2) solid var(--border-color);
+	/* min-width: 100px; */
 }
 
-td {
-	min-width: 100px;
+/* //left most columns left side */
+tr td:first-child,
+tr th:first-child {
+	border-left: var(--table-border-width) solid var(--border-color);
+}
+/* //right most columns right side */
+tr td:last-child,
+tr th:last-child {
+	border-right: var(--table-border-width) solid var(--border-color);
+}
+
+/* the first rows top most side */
+
+th {
+	border-top: var(--table-border-width) solid var(--border-color);
+}
+
+/* the bottom most rows bottom side  */
+tbody tr:last-child td {
+	border-bottom: var(--table-border-width) solid var(--border-color);
+}
+/* //table radius */
+/* top left */
+thead tr th:first-child {
+	border-top-left-radius: var(--radius);
+}
+/* top right */
+thead tr th:last-child {
+	border-top-right-radius: var(--radius);
+}
+/* bottom left  */
+tbody tr:last-child td:first-child {
+	border-bottom-left-radius: var(--radius);
+}
+
+/* Bottom-right corner cell (last cell of the last row) */
+tbody tr:last-child td:last-child {
+	border-bottom-right-radius: var(--radius);
+}
+
+/* the article table stuff as ina uthor name and stuff that doesnt have thead  */
+/* it has direct body */
+.article-table tbody tr:first-of-type td:first-of-type {
+	border-top-left-radius: var(--radius);
+}
+.article-table tbody tr:first-of-type td:last-of-type {
+	border-top-right-radius: var(--radius);
+}
+/* the top most tbodys top side */
+.article-table tbody tr:first-child td {
+	border-top: var(--table-border-width) solid var(--border-color);
 }
 
 /*tags */
@@ -153,13 +233,16 @@ p.tag a {
 	transition: all 0.3s ease;
 }
 
-
+/* //cyberpunk */
 :root {
-	--main-bg: #0d0221;  /* Deep dark purple/blue */
-	--text: #f8f8f8;  /* Bright white text */
-	--accent: #ff007f;  /* Neon pink accent */
-	--dark-bg: #20013b;  /* Secondary dark background */
-	--heading: #00eaff;  /* Electric cyan for headings */
+	--main-bg: #0d0221; /* Deep dark purple/blue */
+	--text: #f8f8f8; /* Bright white text */
+	--accent: #ff007f; /* Neon pink accent */
+	--dark-bg: #20013b; /* Secondary dark background */
+	--heading: #00eaff; /* Electric cyan for headings */
 	--radius: 10px; /* Keeping this as you said */
-  }
-   
+}
+
+.astro-code {
+	background-color: var(--dark-bg) !important;
+}
