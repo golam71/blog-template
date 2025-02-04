@@ -28,7 +28,7 @@ hr {
 	padding: 0;
 }
 
-.main-stuff > main {
+.main-stuff>main {
 	display: flex;
 	flex-direction: column;
 	align-self: center;
@@ -37,12 +37,13 @@ hr {
 }
 
 @media screen and (min-width: 350px) {
-	.main-stuff > main {
+	.main-stuff>main {
 		width: 340px;
 	}
 }
+
 @media screen and (min-width: 400px) {
-	.main-stuff > main {
+	.main-stuff>main {
 		width: 400px;
 	}
 }
@@ -51,10 +52,12 @@ hr {
 	.astro-code {
 		font-size: 16px;
 	}
-	.main-stuff > main {
+
+	.main-stuff>main {
 		width: 700px !important;
 	}
-	.main-stuff > main {
+
+	.main-stuff>main {
 		width: 700px;
 		padding: 0px 20px;
 		font-size: 18px;
@@ -107,6 +110,7 @@ code:not(.astro-code code) {
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 	border-radius: var(--radius);
 }
+
 /* // code with line numbers  */
 code {
 	counter-reset: step;
@@ -132,7 +136,7 @@ li::marker {
 	justify-content: center;
 }
 
-.nav-links > * {
+.nav-links>* {
 	margin: 10px;
 }
 
@@ -153,11 +157,18 @@ table {
 	width: 100%;
 	border-spacing: 0;
 }
-td,
-th {
+
+.main-stuff td,
+.main-stuff th {
 	padding: 5px 10px !important;
 	border: calc(var(--table-border-width) / 2) solid var(--border-color);
-	/* min-width: 100px; */
+
+}
+
+
+
+.article-table td{
+		min-width: 70px;
 }
 
 /* //left most columns left side */
@@ -165,6 +176,7 @@ tr td:first-child,
 tr th:first-child {
 	border-left: var(--table-border-width) solid var(--border-color);
 }
+
 /* //right most columns right side */
 tr td:last-child,
 tr th:last-child {
@@ -181,15 +193,18 @@ th {
 tbody tr:last-child td {
 	border-bottom: var(--table-border-width) solid var(--border-color);
 }
+
 /* //table radius */
 /* top left */
 thead tr th:first-child {
 	border-top-left-radius: var(--radius);
 }
+
 /* top right */
 thead tr th:last-child {
 	border-top-right-radius: var(--radius);
 }
+
 /* bottom left  */
 tbody tr:last-child td:first-child {
 	border-bottom-left-radius: var(--radius);
@@ -205,9 +220,11 @@ tbody tr:last-child td:last-child {
 .article-table tbody tr:first-of-type td:first-of-type {
 	border-top-left-radius: var(--radius);
 }
+
 .article-table tbody tr:first-of-type td:last-of-type {
 	border-top-right-radius: var(--radius);
 }
+
 /* the top most tbodys top side */
 .article-table tbody tr:first-child td {
 	border-top: var(--table-border-width) solid var(--border-color);
@@ -217,6 +234,7 @@ tbody tr:last-child td:last-child {
 p.tag {
 	display: inline;
 }
+
 p.tag a {
 	display: inline-block;
 	font-size: 15px;
@@ -235,12 +253,18 @@ p.tag a {
 
 /* //cyberpunk */
 :root {
-	--main-bg: #0d0221; /* Deep dark purple/blue */
-	--text: #f8f8f8; /* Bright white text */
-	--accent: #ff007f; /* Neon pink accent */
-	--dark-bg: #20013b; /* Secondary dark background */
-	--heading: #00eaff; /* Electric cyan for headings */
-	--radius: 10px; /* Keeping this as you said */
+	--main-bg: #0d0221;
+	/* Deep dark purple/blue */
+	--text: #f8f8f8;
+	/* Bright white text */
+	--accent: #ff007f;
+	/* Neon pink accent */
+	--dark-bg: #20013b;
+	/* Secondary dark background */
+	--heading: #00eaff;
+	/* Electric cyan for headings */
+	--radius: 10px;
+	/* Keeping this as you said */
 }
 
 .astro-code {
