@@ -2,13 +2,27 @@
   "extends": "astro/tsconfigs/strict",
   "include": [
     ".astro/types.d.ts",
-    "**/*"
+    "**/*",
+    "src/**/*.d.ts",
+    "src/**/*.ts",
+    "src/**/*.astro"
   ],
   "exclude": [
     "dist"
   ],
   "compilerOptions": {
+    // not to be confused with the base url of browsers link 
+    // more like where it would look resolve the paths
+    "baseUrl": ".",
     "jsx": "react-jsx",
     "jsxImportSource": "preact"
-  }
+  },
+  "paths": {
+    "@layouts/*": [
+      "./src/layouts/*"
+    ],
+    "@components/*": [
+      "./src/components*"
+    ]
+  },
 }

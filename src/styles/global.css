@@ -28,7 +28,7 @@ hr {
 	padding: 0;
 }
 
-.main-stuff>main {
+.main-stuff > main {
 	display: flex;
 	flex-direction: column;
 	align-self: center;
@@ -37,13 +37,13 @@ hr {
 }
 
 @media screen and (min-width: 350px) {
-	.main-stuff>main {
+	.main-stuff > main {
 		width: 340px;
 	}
 }
 
 @media screen and (min-width: 400px) {
-	.main-stuff>main {
+	.main-stuff > main {
 		width: 400px;
 	}
 }
@@ -53,11 +53,11 @@ hr {
 		font-size: 16px;
 	}
 
-	.main-stuff>main {
+	.main-stuff > main {
 		width: 700px !important;
 	}
 
-	.main-stuff>main {
+	.main-stuff > main {
 		width: 700px;
 		padding: 0px 20px;
 		font-size: 18px;
@@ -136,7 +136,7 @@ li::marker {
 	justify-content: center;
 }
 
-.nav-links>* {
+.nav-links > * {
 	margin: 10px;
 }
 
@@ -162,13 +162,10 @@ table {
 .main-stuff th {
 	padding: 5px 10px !important;
 	border: calc(var(--table-border-width) / 2) solid var(--border-color);
-
 }
 
-
-
-.article-table td{
-		min-width: 70px;
+.article-table td {
+	min-width: 70px;
 }
 
 /* //left most columns left side */
