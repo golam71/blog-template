@@ -1,14 +1,25 @@
 :root {
-	--main-bg: #111927;
+--main-bg: #011627; /* Night Owl Background */
+--dark-bg: #011221; /* Darker shade for depth */
+
+--text: #d6deeb; /* Soft, readable foreground text */
+--accent: #addb67; /* Night Owl Green for accents */
+--heading: #82aaff; /* Night Owl Blue for headings */
+
+}
+
+:root {
+	/* --main-bg: #141d2b;
+	--dark-bg: #0b121f;
+
 	--text: #a4b1cd;
 	--accent: #9fef00;
-	--dark-bg: #0b121f;
-	--heading: #cad2e2;
+	--heading: #cad2e2; */
 
 	--opacity: 50%;
 	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
 	--radius: 10px;
-	--table-border-width: 2px;
+	--table-border-width: 1px;
 }
 
 body {
@@ -49,10 +60,6 @@ hr {
 }
 
 @media screen and (min-width: 700px) {
-	.astro-code {
-		font-size: 16px;
-	}
-
 	.main-stuff > main {
 		width: 700px !important;
 	}
@@ -99,14 +106,14 @@ blockquote {
 
 /* inline code */
 code:not(.astro-code code) {
-	background-color: var(--dark-bg);
+	/* background-color: var(--dark-bg); */
 	color: var(--accent);
 }
 
 /*multiline code */
 .astro-code {
 	padding: 10px;
-	font-size: 13px;
+	font-size: 15px;
 	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 	border-radius: var(--radius);
 }
@@ -227,6 +234,14 @@ tbody tr:last-child td:last-child {
 	border-top: var(--table-border-width) solid var(--border-color);
 }
 
+thead tr {
+	background-color: var(--dark-bg);
+}
+
+tr:nth-of-type(even) {
+	background-color: var(--dark-bg);
+}
+
 /*tags */
 p.tag {
 	display: inline;
@@ -234,7 +249,6 @@ p.tag {
 
 p.tag a {
 	display: inline-block;
-	font-size: 15px;
 	font-weight: bold;
 	color: var(--main-bg);
 	background-color: var(--accent);
@@ -246,24 +260,4 @@ p.tag a {
 /* transitions animations  */
 * {
 	transition: all 0.3s ease;
-}
-
-/* //cyberpunk */
-:root {
-	--main-bg: #0d0221;
-	/* Deep dark purple/blue */
-	--text: #f8f8f8;
-	/* Bright white text */
-	--accent: #ff007f;
-	/* Neon pink accent */
-	--dark-bg: #20013b;
-	/* Secondary dark background */
-	--heading: #00eaff;
-	/* Electric cyan for headings */
-	--radius: 10px;
-	/* Keeping this as you said */
-}
-
-.astro-code {
-	background-color: var(--dark-bg) !important;
 }

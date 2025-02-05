@@ -1,5 +1,5 @@
 ---
-title: HTML Text and Headings  
+title: Text and Headings  
 author: ChatGPT  
 description: "Learn how to structure text and use headings effectively in HTML."  
 image:  

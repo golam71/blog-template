@@ -56,16 +56,6 @@ golam!
         right: 10px;
     }
 
-    /* .visibility {
-        opacity: 0.2;
-    } */
-    /* 
-    .round-btn-container:hover,
-    .round-btn-container:active,
-    .round-btn-container:focus {
-        opacity: 100;
-    } */
-
     /* classes for js */
     .active-state {
         color: var(--accent);
@@ -82,8 +72,8 @@ golam!
 
 <script is:inline>
     let middle, left, right, container;
-
-    document.addEventListener("DOMContentLoaded", () => {
+    // https://stackoverflow.com/questions/77278507/javascript-is-not-working-on-page-change-in-astro
+    document.addEventListener("astro:page-load", () => {
         middle = document.getElementById("middle-button");
         left = document.getElementById("left-button");
         right = document.getElementById("right-button");

@@ -1,5 +1,5 @@
 ---
-title: Understanding HTML Document Structure  
+title:   Document Structure  
 author: ChatGPT  
 description: "A beginner-friendly guide to the fundamental structure of an HTML document."  
 image:  
@@ -38,7 +38,7 @@ Setting the `lang` attribute helps search engines and screen readers interpret t
 The `<head>` section contains metadata about the document, including the title, character set, styles, and links to external resources. Key elements inside `<head>` include:  
 
 - `<title>` – Defines the page title displayed in the browser tab  
-- `<meta charset="UTF-8">` – Ensures proper text encoding  
+- `<meta charset="UTF-8">` - Ensures proper text encoding  
 - `<meta name="viewport" content="width=device-width, initial-scale=1.0">` – Makes the page responsive  
 - `<link rel="stylesheet" href="styles.css">` – Links an external CSS file  
 

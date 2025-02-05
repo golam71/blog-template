@@ -29,6 +29,7 @@ const { headings } = Astro.props;
 
 <style>
     .show-table-of-contents {
+        font-size: 16px;
         display: fixed;
         right: 0px !important;
     }
@@ -56,6 +57,7 @@ const { headings } = Astro.props;
         border-left: 4px solid var(--accent);
     }
     .table-of-contents {
+        font-size: 16px;
         padding: 0px 10px;
         z-index: 5;
         background-color: var(--dark-bg);
@@ -65,21 +67,27 @@ const { headings } = Astro.props;
         width: 280px;
         height: 100vh;
         overflow-y: scroll;
-        /* transition: top 0.3s ease; Smooth transition for top */
-        transition: right 0.3s ease; /* Smooth transition for top */
+        transition: * 0.3s ease; /*Smooth transition for top and on mobile from left*/
     }
 
-    @media screen and (min-width: 1280px) {
+    @media screen and (min-width: 1350px) {
         .table-of-contents h3 {
             padding-top: 10px;
             background-color: var(--main-bg);
         }
         .table-of-contents {
-            top: 0px; /* Always 0px for smaller screens */
+            top: 100px;
             left: calc(50vw + 360px);
             padding: 0px 20px;
             background-color: var(--main-bg);
         }
+    }
+
+    .top0 {
+        top: 0px;
+    }
+    .top100 {
+        top: 100px;
     }
     .hidden {
         display: none;
@@ -88,18 +96,21 @@ const { headings } = Astro.props;
 
 <script is:inline>
     document.addEventListener("scroll", () => {
-        const toc = document.querySelector(".table-of-contents");
+        const toc = document.querySelector("#table-of-contents");
 
-        if (window.innerWidth > 1300) {
+        if (window.innerWidth > 1350) {
             // Animation effect for large screens (1200px+)
             if (window.scrollY > 50) {
-                toc.style.top = "0px"; // Scroll down to top: 0px
+                toc.classList.remove("top100");
+                toc.classList.add("top0");
             } else {
-                toc.style.top = "100px"; // Scroll back to top: 100px
+                toc.classList.remove("top0");
+                toc.classList.add("top100");
             }
         } else {
             // No animation for smaller screens (less than 1200px)
-            toc.style.top = "0px";
+
+            toc.classList.add("top0");
         }
     });
 </script>
