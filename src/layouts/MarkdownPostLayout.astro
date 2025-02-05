@@ -1,10 +1,10 @@
 ---
-// import BaseLayout from "src/layouts/BaseLayout.astro";
-import BaseLayout from "@layouts/BaseLayout.astro";
-import BlogsLinkTable from "../components/BlogsLinkTable.astro";
-import TableOfContents from "../components/TableOfContents.astro";
-import ArticleTable from "../components/ArticleTable.astro";
-import CircleButton from "../components/CircleButton.astro";
+// import BaseLayout from "src/layouts/BaseLayout.astro"; works
+import BaseLayout from "@layouts/BaseLayout.astro"; //doesnt work
+import BlogsLinkTable from "@components/BlogsLinkTable.astro";
+import TableOfContents from "@components/TableOfContents.astro";
+import ArticleTable from "@components/ArticleTable.astro";
+import CircleButton from "@components/CircleButton.astro";
 const { frontmatter, headings } = Astro.props;
 ---
 

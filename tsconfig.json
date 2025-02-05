@@ -15,14 +15,14 @@
     // more like where it would look resolve the paths
     "baseUrl": ".",
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
-  },
-  "paths": {
-    "@layouts/*": [
-      "./src/layouts/*"
-    ],
-    "@components/*": [
-      "./src/components*"
-    ]
+    "jsxImportSource": "preact",
+    "paths": {
+      "@layouts/*": [
+        "src/layouts/*"
+      ],
+      "@components/*": [
+        "src/components/*"
+      ]
+    },
   },
 }
