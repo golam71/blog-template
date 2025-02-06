@@ -15,7 +15,7 @@ import { ClientRouter } from "astro:transitions";
 </head>
 <BaseLayout pageTitle={frontmatter.title}>
   <div class="main-stuff">
-    <main class="animated">
+    <main class="animate">
       <ArticleTable frontmatter={frontmatter} />
       <slot />
     </main>
@@ -30,19 +30,5 @@ import { ClientRouter } from "astro:transitions";
     justify-content: center;
     scroll-behavior: smooth;
   }
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(50px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
 
-  .animated {
-    opacity: 0; /* Initially hidden */
-    animation: fadeInUp 0.7s ease-out forwards;
-  }
 </style>

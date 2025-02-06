@@ -1,11 +1,10 @@
 :root {
---main-bg: #011627; /* Night Owl Background */
---dark-bg: #011221; /* Darker shade for depth */
+	--main-bg: #0d1a2b;
+	--dark-bg: #0a1221;
 
---text: #d6deeb; /* Soft, readable foreground text */
---accent: #addb67; /* Night Owl Green for accents */
---heading: #82aaff; /* Night Owl Blue for headings */
-
+	--text: #a4b4c1;
+	--accent: #00bfff;
+	--heading: #1e90ff;
 }
 
 :root {
@@ -260,4 +259,20 @@ p.tag a {
 /* transitions animations  */
 * {
 	transition: all 0.3s ease;
+}
+
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(50px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.animate {
+	opacity: 0; /* Initially hidden */
+	animation: fadeInUp 0.7s ease-out forwards;
 }

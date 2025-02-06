@@ -23,6 +23,7 @@ console.log(posts);
         posts.slice(0, 4).map((post) => (
             <div>
                 <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
+                    {/* biome-ignore-next-line */}
                     {post.frontmatter.title}
                 </a>
             </div>
@@ -38,8 +39,8 @@ console.log(posts);
         background-color: var(--dark-bg);
         position: fixed !important;
         top: 0px;
-        /* right: -100vw; */
-        left: 0px !important;
+        left :-100vw;
+        /* left: 0px !important; */
         width: 280px;
         height: 100vh;
         overflow-y: scroll;
@@ -48,6 +49,8 @@ console.log(posts);
 
     .blogs-link-table > div {
         background-color: var(--main-bg);
+        margin-top: 10px;
+        border-radius: var(--radius);
     }
     @media screen and (min-width: 1350px) {
         .blogs-link-table h3 {
@@ -56,17 +59,19 @@ console.log(posts);
         }
         .blogs-link-table {
             top: 100px; /* Always 0px for smaller screens */
-            right: calc(50vw + 360px);
+            left:unset !important;
+            right: calc(50vw + 360px) !important;
             padding: 0px 20px;
             background-color: var(--main-bg);
         }
+        .blogs-link-table > div {
+            background-color: var(--dark-bg);
+        }
     }
-    .blogs-link-table > div {
-        background-color: var(--dark-bg);
-        /* margin:10px 20px */
-        margin-top: 10px;
-        border-radius: var(--radius);
+    .show-blogs-link-table {
+        left: 0px !important;
     }
+
     .blogs-link-table a {
         display: block;
         color: var(--text);
@@ -81,6 +86,9 @@ console.log(posts);
     }
     .top100 {
         top: 100px;
+    }
+    .hidden {
+        display: none;
     }
 </style>
 

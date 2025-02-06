@@ -103,5 +103,14 @@ golam!
                 contents.classList.toggle("hidden");
             }
         });
+        right.addEventListener("click", () => {
+            let contents = document.getElementById("blogs-link-table");
+            console.log("right");
+            if (screen.width < 1280) {
+                contents.classList.toggle("show-blogs-link-table");
+            } else {
+                contents.classList.toggle("hidden");
+            }
+        });
     });
 </script>
