@@ -6,7 +6,7 @@ import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 
 //htb vscode theme https://github.com/silofy/hackthebox/blob/master/themes/HackTheBox-Lite.json
-import hackthebox from "./hackthebox.json";
+import hackthebox from "./hackthebox-lite.json";
 
 // https://astro.build/config
 export default defineConfig({
