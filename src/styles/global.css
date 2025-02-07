@@ -254,13 +254,13 @@ p.tag {
 }
 
 p.tag a {
+
 	display: inline-block;
-	font-weight: bold;
+	font-weight: 600;
 	color: var(--main-bg);
 	background-color: var(--accent);
 	border-radius: 20px;
 	padding: 0px 10px;
-	margin: 5px;
 }
 
 /* transitions animations  */
