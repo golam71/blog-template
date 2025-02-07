@@ -1,0 +1,84 @@
+---
+title: CSS Basics(selectors)
+author: You  
+description: "An in-depth guide to CSS fundamentals and selectors, covering the basics, different types of selectors, and advanced techniques."  
+image:  
+  url: "https://docs.astro.build/default-og-image.png"  
+  alt: "The word astro against an illustration of planets and stars."  
+pubDate: 2025-02-07  
+tags: ["css", "selectors", "web development", "best practices"]  
+topic: "css"
+---
+
+
+
+
+
+## Introduction to CSS: What It Is and How It Works  
+CSS (Cascading Style Sheets) is the language used to style HTML documents. It controls the appearance of web pages, enabling developers to apply colors, layouts, fonts, and spacing effectively. CSS works by selecting HTML elements and applying rules that define their visual presentation.
+
+### How CSS Works  
+- CSS can be added to an HTML document in three ways: **inline styles**, **internal stylesheets**, and **external stylesheets**.
+- The **cascade** determines how styles are applied when multiple rules affect the same element.
+- CSS follows a **box model**, where every element is a box with properties like margin, border, padding, and content.
+
+## Understanding CSS Selectors: A Beginner’s Guide  
+Selectors are used in CSS to target specific HTML elements and apply styles to them. Here are some common types:
+
+### Basic Selectors  
+- **Element Selector**: Targets all elements of a specified type.  
+  ```css
+  p {
+    color: blue;
+  }
+  ```  
+- **Class Selector**: Targets elements with a specific class.  
+  ```css
+  .highlight {
+    background-color: yellow;
+  }
+  ```  
+- **ID Selector**: Targets a single element with a specific ID.  
+  ```css
+  #main-heading {
+    font-size: 24px;
+  }
+  ```  
+
+## Advanced CSS Selectors: Pseudo-classes, Pseudo-elements, and Attribute Selectors  
+Advanced selectors allow for more refined styling.
+
+### Pseudo-classes  
+- **`:hover`**: Applies styles when the user hovers over an element.  
+  ```css
+  button:hover {
+    background-color: green;
+  }
+  ```  
+- **`:nth-child(n)`**: Targets the nth child of a parent element.  
+  ```css
+  li:nth-child(2) {
+    font-weight: bold;
+  }
+  ```  
+
+### Pseudo-elements  
+- **`::before` and `::after`**: Add content before or after an element.  
+  ```css
+  p::before {
+    content: "★ ";
+    color: gold;
+  }
+  ```  
+
+### Attribute Selectors  
+- Targets elements based on their attributes.  
+  ```css
+  input[type="text"] {
+    border: 1px solid gray;
+  }
+  ```  
+
+## Conclusion  
+CSS selectors are fundamental to web design, allowing developers to precisely target elements and apply styles. By mastering both basic and advanced selectors, you can create more dynamic and visually appealing web pages.
+

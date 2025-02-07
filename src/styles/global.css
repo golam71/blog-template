@@ -19,7 +19,7 @@
 	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
 	/* --border-color:var(--dark-bg); */
 	--radius: 10px;
-	--table-border-width: 1px;
+	--table-border-width: 2px;
 }
 
 body {
@@ -161,10 +161,15 @@ li::marker {
 }
 
 /*table*/
-table {
+.article-table table {
 	width: 100%;
+}
+table {
+	/* width: 100%; */
 	border-spacing: 0;
+	/* border-collapse: collapse; */
 	font-size: 16px;
+	margin: 0 auto;
 }
 
 td {
@@ -191,12 +196,6 @@ tr th:first-child {
 tr td:last-child,
 tr th:last-child {
 	border-right: var(--table-border-width) solid var(--border-color);
-}
-
-/* the first rows top most side */
-
-th {
-	border-top: var(--table-border-width) solid var(--border-color);
 }
 
 /* the bottom most rows bottom side  */
@@ -244,6 +243,12 @@ thead tr {
 	background-color: var(--dark-bg);
 }
 
+/* the first rows top most side */
+
+th {
+	border-top: var(--table-border-width) solid var(--border-color) !important;
+}
+
 .main-stuff tr:nth-of-type(even):not(.article-table tr) {
 	background-color: var(--dark-bg);
 }
@@ -254,7 +259,6 @@ p.tag {
 }
 
 p.tag a {
-
 	display: inline-block;
 	font-weight: 600;
 	color: var(--main-bg);
