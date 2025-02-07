@@ -96,8 +96,8 @@ golam!
         });
         left.addEventListener("click", () => {
             let contents = document.getElementById("table-of-contents");
-         
-            if (screen.width < 1280) {
+
+            if (window.innerWidth < 1280) {
                 contents.classList.toggle("show-table-of-contents");
             } else {
                 contents.classList.toggle("hidden");
@@ -105,8 +105,8 @@ golam!
         });
         right.addEventListener("click", () => {
             let contents = document.getElementById("blogs-link-table");
-       
-            if (screen.width < 1280) {
+
+            if (window.innerWidth < 1280) {
                 contents.classList.toggle("show-blogs-link-table");
             } else {
                 contents.classList.toggle("hidden");
