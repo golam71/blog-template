@@ -17,7 +17,7 @@
 
 	--opacity: 50%;
 	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
-	/* --border-color:var(--dark-bg); */
+	/*--border-color:var(--dark-bg);*/
 	--radius: 10px;
 	--table-border-width: 2px;
 }
@@ -239,17 +239,17 @@ tbody tr:last-child td:last-child {
 	border-top: var(--table-border-width) solid var(--border-color);
 }
 
-thead tr {
-	background-color: var(--dark-bg);
-}
-
 /* the first rows top most side */
 
 th {
 	border-top: var(--table-border-width) solid var(--border-color) !important;
 }
 
-.main-stuff tr:nth-of-type(even):not(.article-table tr) {
+thead tr th {
+	background-color: var(--dark-bg);
+}
+
+.main-stuff tr:nth-of-type(even):not(.article-table tr) td {
 	background-color: var(--dark-bg);
 }
 
@@ -284,6 +284,7 @@ p.tag a {
 }
 
 .animate {
-	opacity: 0; /* Initially hidden */
+	opacity: 0;
+	/* Initially hidden */
 	animation: fadeInUp 0.3s ease-out forwards;
 }
