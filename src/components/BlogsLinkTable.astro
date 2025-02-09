@@ -1,32 +1,45 @@
 ---
-// const matches = import.meta.glob("../blog/**/*.md", { eager: true });
-// const posts = Object.values(matches);
-// console.log(posts);
 const matches = import.meta.glob("../blog/**/*.{md,mdx}", { eager: true });
 
 const posts = Object.entries(matches).map(([path, post]) => {
     // Extract filename from path (remove directories and extension)
-    const slug = path.replace("../blog/", "/posts/").replace(/\.(md|mdx)$/, "");
+    const slug = path.replace("../blog/", "posts/").replace(/\.(md|mdx)$/, "");
 
     return {
         ...(typeof post === "object" ? post : {}),
         slug, // Add slug property dynamically
     };
 });
+// Sort posts by filename (slug) only once
+const sortedPosts = [...posts].sort((a, b) => a.slug.localeCompare(b.slug));
 
-// console.log(posts);
+// Group posts by topic
+const postsByTopic = sortedPosts.reduce((acc, post) => {
+    const topic = post.frontmatter.topic || ""; // Empty string for no topic
+    if (!acc[topic]) acc[topic] = [];
+    acc[topic].push(post);
+    return acc;
+}, {});
 ---
 
 <div class="blogs-link-table" id="blogs-link-table">
     <h3>Table of Blogs</h3>
     {
-        posts.map((post) => (
-            <div>
-                <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
-                    {/* biome-ignore-next-line */}
-                    {post.frontmatter.title}
-                </a>
-            </div>
+        Object.entries(postsByTopic).map(([topic, posts]) => (
+            <>
+                {topic && (
+                    <h4>
+                        <a href={`#${topic}`}>{topic}</a>
+                    </h4>
+                )}
+                {posts.map((post) => (
+                    <div key={post.slug}>
+                        <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
+                            {post.frontmatter.title}
+                        </a>
+                    </div>
+                ))}
+            </>
         ))
     }
 </div>
@@ -47,11 +60,12 @@ const posts = Object.entries(matches).map(([path, post]) => {
         transition: * 0.3s ease; /*Smooth transition for top and on mobile from left*/
     }
 
-    .blogs-link-table > div {
+    .blogs-link-table div {
         background-color: var(--main-bg);
         margin-top: 10px;
         border-radius: var(--radius);
     }
+
     @media screen and (min-width: 1350px) {
         .blogs-link-table h3 {
             padding-top: 10px;
@@ -64,8 +78,8 @@ const posts = Object.entries(matches).map(([path, post]) => {
             padding: 0px 20px;
             background-color: var(--main-bg);
         }
-        .blogs-link-table > div {
-            background-color: var(--dark-bg);
+        .blogs-link-table div {
+            background-color: var(--dark-bg) !important;
         }
     }
     .show-blogs-link-table {
