@@ -161,7 +161,7 @@ li::marker {
 }
 
 /*table*/
-table.article-table  {
+table.article-table {
 	width: 100%;
 }
 table {
@@ -287,4 +287,34 @@ p.tag a {
 	opacity: 0;
 	/* Initially hidden */
 	animation: fadeInUp 0.3s ease-out forwards;
+}
+
+/* Style for the link */
+/* Remove the default underline from links */
+/* Remove the default underline from links */
+
+/* Apply styles to all anchor tags inside main except those inside .article-table */
+main a:not(.article-table a) {
+	position: relative;
+	text-decoration: none; /* Remove default underline */
+	color: var(--accent); /* Link color */
+	border-bottom: none; /* Remove any potential borders */
+	display: inline-block; /* Ensure proper handling of positioning */
+}
+
+/* Create the underline and initially hide it */
+main a:not(.article-table a)::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	height: 2px; /* Thickness of the underline */
+	background-color: var(--accent); /* Color of the underline */
+	transition: width 0.3s ease; /* Animation for the width */
+}
+
+/* Hover state to trigger the underline animation */
+main a:not(.article-table a):hover::after {
+	width: 100%; /* Underline grows to full width on hover */
 }
