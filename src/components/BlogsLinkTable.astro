@@ -10,8 +10,9 @@ const posts = Object.entries(matches).map(([path, post]) => {
     };
 });
 
-const sortedPosts = [...posts].sort((a, b) => a.slug.localeCompare(b.slug, undefined, { numeric: true }));
-
+const sortedPosts = [...posts].sort((a, b) =>
+    a.slug.localeCompare(b.slug, undefined, { numeric: true }),
+);
 
 const postsByTopic = sortedPosts.reduce((acc, post) => {
     const topic = post.frontmatter?.topic || "other"; // Default to "Other"
@@ -19,17 +20,16 @@ const postsByTopic = sortedPosts.reduce((acc, post) => {
     acc[topic].push(post);
     return acc;
 }, {});
-
 ---
 
 <div class="blogs-link-table" id="blogs-link-table">
     <h3>Table of Blogs</h3>
     {
         Object.entries(postsByTopic).map(([topic, posts]) => (
-            <div id={topic}>
                 <h4>
                     <a href={`#${topic}`}>{topic}</a>
                 </h4>
+            <div>
                 {posts.map((post) => (
                     <div id={post.slug}>
                         <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
@@ -64,6 +64,7 @@ const postsByTopic = sortedPosts.reduce((acc, post) => {
         border-radius: var(--radius);
     }
 
+
     @media screen and (min-width: 1350px) {
         .blogs-link-table h3 {
             padding-top: 10px;
@@ -76,7 +77,8 @@ const postsByTopic = sortedPosts.reduce((acc, post) => {
             padding: 0px 20px;
             background-color: var(--main-bg);
         }
-        .blogs-link-table div {
+        /* here use .blogs-link-table div div for stripes  */
+        .blogs-link-table div  {
             background-color: var(--dark-bg) !important;
         }
     }
