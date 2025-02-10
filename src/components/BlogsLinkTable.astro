@@ -58,10 +58,13 @@ const postsByTopic = sortedPosts.reduce((acc, post) => {
         transition: * 0.3s ease; /*Smooth transition for top and on mobile from left*/
     }
 
-    .blogs-link-table div {
+    .blogs-link-table div div{
         background-color: var(--main-bg);
-        margin-top: 10px;
+        margin: 10px 0px;
         border-radius: var(--radius);
+    }
+    .blogs-link-table div:last-of-type div:last-child {
+        margin-bottom: 10vh;
     }
 
 
@@ -78,7 +81,7 @@ const postsByTopic = sortedPosts.reduce((acc, post) => {
             background-color: var(--main-bg);
         }
         /* here use .blogs-link-table div div for stripes  */
-        .blogs-link-table div  {
+        .blogs-link-table div  div{
             background-color: var(--dark-bg) !important;
         }
     }
