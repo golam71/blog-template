@@ -1,22 +1,176 @@
 ---
 import { getCollection } from "astro:content";
 import BaseLayout from "../layouts/BaseLayout.astro";
-import BlogPost from "../components/BlogPost.astro";
 
 const pageTitle = "My Astro Learning Blog";
 const allPosts = await getCollection("blog");
+
+// Group posts by module (directory)
+const groupedPosts = allPosts.reduce((acc: { [key: string]: typeof allPosts }, post) => {
+  const parts = post.id.split("/"); // Extract module name
+  const moduleName = parts[0];
+
+  if (!acc[moduleName]) {
+    acc[moduleName] = [];
+  }
+  acc[moduleName].push(post);
+
+  return acc;
+}, {});
+
+// Extract top 5 tags per module
+const getTopTags = (posts: typeof allPosts) => {
+  const tagCounts = posts
+    .flatMap((post) => post.data.tags || [])
+    .reduce((acc: { [key: string]: number }, tag) => {
+      acc[tag] = (acc[tag] || 0) + 1;
+      return acc;
+    }, {});
+
+  return Object.entries(tagCounts)
+    .sort((a, b) => b[1] - a[1]) // Sort by most used tags
+    .slice(0, 5)
+    .map(([tag]) => tag);
+};
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <p>This is where I will post about my journey learning Astro.</p>
-  <ul>
+  <section class="blog-modules">
     {
-      allPosts.map((post) => (
-        <BlogPost
-          url={`${import.meta.env.BASE_URL}/posts/${post.id}/`}
-          title={post.data.title}
-        />
-      ))
+      Object.entries(groupedPosts).map(([module, posts]) => {
+        const sortedPosts = [...posts].sort((a, b) =>
+          a.id.localeCompare(b.id, undefined, { numeric: true }),
+        );
+
+        const topTags = getTopTags(sortedPosts); // Get top 5 tags
+
+        return (
+          <details>
+            <summary >
+              <div>
+                <h3>
+                  <a
+                    href={`${import.meta.env.BASE_URL}/posts/${sortedPosts[0].id}/`}
+                  >
+                    {module} ({sortedPosts.length})
+                  </a>
+                </h3>
+              </div>
+            </summary>
+
+            <div id="tag-container">
+              {topTags.map((tag) => (
+                <a
+                  id="tag"
+                  href={`${import.meta.env.BASE_URL}/tags/${tag}`}
+        
+                >
+                  #{tag}
+                </a>
+              ))}
+            </div>
+
+            <ul>
+              {sortedPosts.map((post) => (
+                <li id={post.id}>
+                  <a href={`${import.meta.env.BASE_URL}/posts/${post.id}/`}>
+                    {post.data.title}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </details>
+        );
+      })
     }
-  </ul>
+  </section>
 </BaseLayout>
+
+<style>
+  h3 {
+    line-height: 0.3 !important;
+  }
+  section {
+    padding: 10px;
+    max-width: 800px;
+    margin: auto;
+  }
+
+  details {
+    background-color: var(--dark-bg);
+    padding: 10px 20px;
+    margin: 8px 0;
+    border-radius: var(--radius);
+    transition: all 0.3s ease-in-out;
+  }
+
+  summary {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  summary div {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  details a {
+    color: var(--text);
+  }
+
+  ul a {
+    background-color: var(--main-bg);
+    display: block !important;
+    padding: 5px 20px;
+    margin: 10px;
+    border-radius: var(--radius);
+  }
+
+  details a:hover {
+    color: var(--accent);
+  }
+
+  div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  div a {
+    color: var(--accent) !important;
+  }
+
+  a {
+    display: inline !important;
+  }
+
+
+  #tag-container{
+/*   background: var(--main-bg); */
+  border-radius: var(--radius);
+  padding: 20px;
+  display: flex;
+}
+
+#tag{
+  line-height: 1;
+  color:var(--main-bg) !important;
+  padding: 4px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  background: var(--accent);
+  border-radius:9999px;
+
+}
+  ul {
+    padding-left: 20px !important;
+    margin-top: 5px;
+  }
+
+
+
+</style>
