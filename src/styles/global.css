@@ -153,13 +153,6 @@ li::marker {
 	color: var(--main-bg);
 }
 
-/*scrollbar */
-
-* {
-	scrollbar-color: var(--accent) var(--dark-bg);
-	scrollbar-width: 5px;
-}
-
 /*table*/
 table.article-table {
 	width: 100%;
@@ -317,4 +310,20 @@ main a:not(.article-table a)::after {
 /* Hover state to trigger the underline animation */
 main a:not(.article-table a):hover::after {
 	width: 100%; /* Underline grows to full width on hover */
+}
+
+/*scrollbar hide in chrome cause ungly */
+/* https://support.google.com/chrome/thread/269613337/why-is-the-chrome-scrollbar-still-so-ugly?hl=en */
+
+* {
+	scrollbar-color: var(--accent) var(--dark-bg);
+	scrollbar-width: none;
+}
+
+@-moz-document url-prefix("") {
+ 
+   *{
+	scrollbar-width: auto;
+   }
+ 
 }
