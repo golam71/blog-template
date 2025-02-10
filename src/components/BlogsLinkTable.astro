@@ -2,44 +2,42 @@
 const matches = import.meta.glob("../blog/**/*.{md,mdx}", { eager: true });
 
 const posts = Object.entries(matches).map(([path, post]) => {
-    // Extract filename from path (remove directories and extension)
     const slug = path.replace("../blog/", "posts/").replace(/\.(md|mdx)$/, "");
 
     return {
         ...(typeof post === "object" ? post : {}),
-        slug, // Add slug property dynamically
+        slug,
     };
 });
-// Sort posts by filename (slug) only once
-const sortedPosts = [...posts].sort((a, b) => a.slug.localeCompare(b.slug));
 
-// Group posts by topic
+const sortedPosts = [...posts].sort((a, b) => a.slug.localeCompare(b.slug, undefined, { numeric: true }));
+
+
 const postsByTopic = sortedPosts.reduce((acc, post) => {
-    const topic = post.frontmatter.topic || ""; // Empty string for no topic
+    const topic = post.frontmatter?.topic || "other"; // Default to "Other"
     if (!acc[topic]) acc[topic] = [];
     acc[topic].push(post);
     return acc;
 }, {});
+
 ---
 
 <div class="blogs-link-table" id="blogs-link-table">
     <h3>Table of Blogs</h3>
     {
         Object.entries(postsByTopic).map(([topic, posts]) => (
-            <>
-                {topic && (
-                    <h4>
-                        <a href={`#${topic}`}>{topic}</a>
-                    </h4>
-                )}
+            <div id={topic}>
+                <h4>
+                    <a href={`#${topic}`}>{topic}</a>
+                </h4>
                 {posts.map((post) => (
-                    <div key={post.slug}>
+                    <div id={post.slug}>
                         <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
                             {post.frontmatter.title}
                         </a>
                     </div>
                 ))}
-            </>
+            </div>
         ))
     }
 </div>
