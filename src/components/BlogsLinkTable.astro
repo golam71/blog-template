@@ -5,7 +5,7 @@ const posts = Object.entries(matches).map(([path, post]) => {
     const slug = path.replace("../blog/", "posts/").replace(/\.(md|mdx)$/, "");
 
     return {
-        ...(typeof post === "object" ? post : {}),
+        ...(post && typeof post === "object" ? { ...post, frontmatter: (post as { frontmatter?: { topic?: string; title?: string } }).frontmatter || {} } : {}),
         slug,
     };
 });
@@ -14,7 +14,7 @@ const sortedPosts = [...posts].sort((a, b) =>
     a.slug.localeCompare(b.slug, undefined, { numeric: true }),
 );
 
-const postsByTopic = sortedPosts.reduce((acc, post) => {
+const postsByTopic: Record<string, typeof posts> = sortedPosts.reduce((acc: Record<string, typeof posts>, post) => {
     const topic = post.frontmatter?.topic || "other"; // Default to "Other"
     if (!acc[topic]) acc[topic] = [];
     acc[topic].push(post);
@@ -33,7 +33,7 @@ const postsByTopic = sortedPosts.reduce((acc, post) => {
                 {posts.map((post) => (
                     <div id={post.slug}>
                         <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
-                            {post.frontmatter.title}
+                            {post.frontmatter?.title ?? "Untitled"}
                         </a>
                     </div>
                 ))}
