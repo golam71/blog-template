@@ -1,20 +1,29 @@
 ---
+const { moduleName } = Astro.props; // Receive module name statically
+
+// Import all blog posts statically
 const matches = import.meta.glob("../blog/**/*.{md,mdx}", { eager: true });
 
-const posts = Object.entries(matches).map(([path, post]) => {
-    const slug = path.replace("../blog/", "posts/").replace(/\.(md|mdx)$/, "");
+const posts = Object.entries(matches)
+    .filter(([path]) => path.includes(`../blog/${moduleName}/`)) // Filter by moduleName
+    .map(([path, post]) => {
+        const slug = path
+            .replace("../blog/", "posts/")
+            .replace(/\.(md|mdx)$/, "");
 
-    return {
-        ...(post && typeof post === "object" ? { ...post, frontmatter: (post as { frontmatter?: { topic?: string; title?: string } }).frontmatter || {} } : {}),
-        slug,
-    };
-});
+        return {
+            ...(post && typeof post === "object"
+                ? { ...post, frontmatter: post.frontmatter || {} }
+                : {}),
+            slug,
+        };
+    });
 
 const sortedPosts = [...posts].sort((a, b) =>
     a.slug.localeCompare(b.slug, undefined, { numeric: true }),
 );
 
-const postsByTopic: Record<string, typeof posts> = sortedPosts.reduce((acc: Record<string, typeof posts>, post) => {
+const postsByTopic = sortedPosts.reduce((acc, post) => {
     const topic = post.frontmatter?.topic || "other"; // Default to "Other"
     if (!acc[topic]) acc[topic] = [];
     acc[topic].push(post);
@@ -26,18 +35,22 @@ const postsByTopic: Record<string, typeof posts> = sortedPosts.reduce((acc: Reco
     <h3>Table of Blogs</h3>
     {
         Object.entries(postsByTopic).map(([topic, posts]) => (
+            <>
                 <h4>
                     <a href={`#${topic}`}>{topic}</a>
                 </h4>
-            <div>
-                {posts.map((post) => (
-                    <div id={post.slug}>
-                        <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
-                            {post.frontmatter?.title ?? "Untitled"}
-                        </a>
-                    </div>
-                ))}
-            </div>
+                <div>
+                    {posts.map((post) => (
+                        <div id={post.slug}>
+                            <a
+                                href={`${import.meta.env.BASE_URL}/${post.slug}`}
+                            >
+                                {post.frontmatter?.title ?? "Untitled"}
+                            </a>
+                        </div>
+                    ))}
+                </div>
+            </>
         ))
     }
 </div>
@@ -58,7 +71,7 @@ const postsByTopic: Record<string, typeof posts> = sortedPosts.reduce((acc: Reco
         transition: * 0.3s ease; /*Smooth transition for top and on mobile from left*/
     }
 
-    .blogs-link-table div div{
+    .blogs-link-table div div {
         background-color: var(--main-bg);
         margin: 10px 0px;
         border-radius: var(--radius);
@@ -66,7 +79,6 @@ const postsByTopic: Record<string, typeof posts> = sortedPosts.reduce((acc: Reco
     .blogs-link-table div:last-of-type div:last-child {
         margin-bottom: 10vh;
     }
-
 
     @media screen and (min-width: 1350px) {
         .blogs-link-table h3 {
@@ -81,7 +93,7 @@ const postsByTopic: Record<string, typeof posts> = sortedPosts.reduce((acc: Reco
             background-color: var(--main-bg);
         }
         /* here use .blogs-link-table div div for stripes  */
-        .blogs-link-table div  div{
+        .blogs-link-table div div {
             background-color: var(--dark-bg) !important;
         }
     }

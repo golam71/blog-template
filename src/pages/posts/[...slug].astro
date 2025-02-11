@@ -10,12 +10,19 @@ export async function getStaticPaths() {
   }));
 }
 
-// heading is undefined here how to fix?
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
+console.log(post);
+
+const slugParts = Astro.params.slug.split("/"); // ["linux", "1-history"]
+const moduleName = slugParts[0]; // "linux" or "web-development"
 ---
 
 <!-- since heading is undefine i cant pass it here  -->
-<MarkdownPostLayout frontmatter={post.data} headings={headings}>
+<MarkdownPostLayout
+  frontmatter={post.data}
+  headings={headings}
+  moduleName={moduleName}
+>
   <Content />
 </MarkdownPostLayout>

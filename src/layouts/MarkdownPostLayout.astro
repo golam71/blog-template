@@ -5,7 +5,7 @@ import BlogsLinkTable from "@components/BlogsLinkTable.astro";
 import TableOfContents from "@components/TableOfContents.astro";
 import ArticleTable from "@components/ArticleTable.astro";
 import CircleButton from "@components/CircleButton.astro";
-const { frontmatter, headings } = Astro.props;
+const { frontmatter, headings, moduleName } = Astro.props;
 import { ClientRouter } from "astro:transitions";
 ---
 
@@ -19,7 +19,7 @@ import { ClientRouter } from "astro:transitions";
       <ArticleTable frontmatter={frontmatter} />
       <slot />
     </main>
-    <BlogsLinkTable />
+    <BlogsLinkTable moduleName={moduleName} />
     <TableOfContents headings={headings} />
   </div>
   <CircleButton />
@@ -30,5 +30,4 @@ import { ClientRouter } from "astro:transitions";
     justify-content: center;
     scroll-behavior: smooth;
   }
-
 </style>
