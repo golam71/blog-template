@@ -7,7 +7,9 @@ const { frontmatter } = Astro.props;
     <tbody>
         <tr>
             <td><strong>Date :</strong></td>
-            <td>{frontmatter.pubDate.toString().slice(0, 10)}</td>
+            <!-- <td>{frontmatter.pubDate.toString().slice(0, 10)}</td> -->
+            <td>{new Date(frontmatter.pubDate).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" })}</td>
+
         </tr>
         <tr>
             <td><strong>Author :</strong></td>

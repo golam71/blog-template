@@ -176,7 +176,10 @@ td {
 }
 
 .article-table td {
-	min-width: 70px;
+	min-width: 90px;
+}
+.article-table tr td:first-child {
+	width: 100px;
 }
 
 /* //left most columns left side */
@@ -321,9 +324,7 @@ main a:not(.article-table a):hover::after {
 }
 
 @-moz-document url-prefix("") {
- 
-   *{
-	scrollbar-width: auto;
-   }
- 
+	* {
+		scrollbar-width: auto;
+	}
 }
