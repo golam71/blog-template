@@ -1,8 +1,9 @@
-const { createCanvas } = require('canvas');
-const fs = require('fs');
-const yargs = require('yargs');
+import { createCanvas } from 'canvas';
+import fs from 'fs';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-const argv = yargs
+const argv = yargs(hideBin(process.argv))
   .option('text', { alias: 't', description: 'Text to display', type: 'string', demandOption: true })
   .option('bg', { alias: 'b', description: 'Background color', type: 'string', default: '#0b121f' })
   .option('fg', { alias: 'f', description: 'Text color', type: 'string', default: '#9fef00' })
@@ -14,7 +15,7 @@ const argv = yargs
   .option('borderRadius', { alias: 'r', description: 'Border radius', type: 'string', default: '20' })
   .option('tags', { alias: 'g', description: 'Tags to display', type: 'string', default: '' })
   .option('date', { alias: 'd', description: 'Date to display', type: 'string', default: '' })
-  .option('output', { alias: 'o', description: 'Output filename', type: 'string', default: 'output.png' }) // New option for output file
+  .option('output', { alias: 'o', description: 'Output filename', type: 'string', default: 'output.png' })
   .help()
   .alias('help', 'H')
   .argv;
@@ -112,7 +113,6 @@ if (tags.length > 0) {
   const maxTagWidth = width - 2 * padding;
 
   let tagY = height - tagFontSize * 6 - padding;
-  //let tagY = height / 1.5;
   let tagX = padding;
   let currentLineWidth = 0;
   let currentLineTags = [];
