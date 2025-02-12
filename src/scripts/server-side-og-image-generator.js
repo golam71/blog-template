@@ -14,6 +14,7 @@ const argv = yargs
   .option('borderRadius', { alias: 'r', description: 'Border radius', type: 'string', default: '20' })
   .option('tags', { alias: 'g', description: 'Tags to display', type: 'string', default: '' })
   .option('date', { alias: 'd', description: 'Date to display', type: 'string', default: '' })
+  .option('output', { alias: 'o', description: 'Output filename', type: 'string', default: 'output.png' }) // New option for output file
   .help()
   .alias('help', 'H')
   .argv;
@@ -166,8 +167,7 @@ if (tags.length > 0) {
   ctx.fillText(argv.date, width / 2, tagY + tagFontSize);
 }
 
+// Save to the specified output file
 const buffer = canvas.toBuffer('image/png');
-fs.writeFileSync('output.png', buffer);
-console.log('Image saved as output.png');
-
-
+fs.writeFileSync(argv.output, buffer);
+console.log(`Image saved as ${argv.output}`);
