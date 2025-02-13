@@ -64,7 +64,7 @@ async function ensureImageFiles(directory) {
         const imagePath = path.join(imagesDir, `${fileNameWithoutExt}.png`);
 
         if (!fs.existsSync(imagePath)) {
-            execSync(`node ${ogScript} --text "${title}" --tags "${tags}" --date "${pubDate}" --border1Color "#00000000" --border2Color "${accent}" --borderRadius 70 --fontSize 60 -h 1000 -w 1200 -o "${imagePath}"`);
+            execSync(`node ${ogScript} --text "${title}" --bg "${mainBg}" --fg "${accent}"  --tags "${tags}" --date "${pubDate}" --border1Color "#00000000" --border2Color "${accent}" --borderRadius 70 --fontSize 60 -h 1000 -w 1200 -o "${imagePath}"`);
             createdImages++;
         } else {
             skippedImages++;
@@ -88,7 +88,7 @@ const formattedLatestDate = latestDate !== "2000-01-01"
 
 const mainImagePath = path.join(imagesDir, `${path.basename(directory)}.png`);
 if (!fs.existsSync(mainImagePath)) {
-    execSync(`node ${ogScript} --text "${path.basename(directory)}" --tags "${topTags.length > 0 ? topTags.join(",") : "#general"}" --date "${formattedLatestDate}" --border1Color "#00000000" --border2Color "${accent}" --borderRadius 70 --fontSize 60 -h 1000 -w 1200 -o "${mainImagePath}"`);
+    execSync(`node ${ogScript} --text "${path.basename(directory)}" --tags "${topTags.length > 0 ? topTags.join(",") : "#general"}" --date "${formattedLatestDate}"  --bg "${mainBg}" --fg "${accent}"  --border1Color "#00000000" --border2Color "${accent}" --borderRadius 70 --fontSize 60 -h 1000 -w 1200 -o "${mainImagePath}"`);
     createdImages++;
 } else {
     skippedImages++;
