@@ -50,7 +50,7 @@ import { Icon } from "astro-icon/components";
         gap: 15px;
         padding: 10px 0px;
         /* border-radius: var(--radius);  */
-        border-radius:40px;
+        border-radius: 40px;
         background-color: var(--dark-bg);
         position: fixed;
         bottom: 10px;
@@ -98,7 +98,7 @@ import { Icon } from "astro-icon/components";
         left.addEventListener("click", () => {
             let contents = document.getElementById("table-of-contents");
 
-            if (window.innerWidth < 1280) {
+            if (window.innerWidth < 1350) {
                 contents.classList.toggle("show-table-of-contents");
             } else {
                 contents.classList.toggle("hidden");
@@ -107,7 +107,7 @@ import { Icon } from "astro-icon/components";
         right.addEventListener("click", () => {
             let contents = document.getElementById("blogs-link-table");
 
-            if (window.innerWidth < 1280) {
+            if (window.innerWidth < 1350) {
                 contents.classList.toggle("show-blogs-link-table");
             } else {
                 contents.classList.toggle("hidden");
