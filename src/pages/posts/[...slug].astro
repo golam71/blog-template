@@ -12,7 +12,7 @@ export async function getStaticPaths() {
 
 const { post } = Astro.props;
 const { Content, headings } = await render(post);
-console.log(post);
+// console.log(post);
 
 const slugParts = Astro.params.slug.split("/"); // ["linux", "1-history"]
 const moduleName = slugParts[0]; // "linux" or "web-development"
