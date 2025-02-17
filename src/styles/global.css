@@ -264,7 +264,6 @@ p.tag a {
 /* transitions animations  */
 * {
 	transition: all 0.3s ease;
-	overflow-y: scroll;
 }
 
 @keyframes fadeInUp {
