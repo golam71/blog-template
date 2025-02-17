@@ -55,12 +55,9 @@ hr {
 @media screen and (min-width: 700px) {
 	.main-stuff > main {
 		width: 700px !important;
-	}
-
-	.main-stuff > main {
-		width: 700px;
 		padding: 0px 20px;
 		font-size: 18px;
+		margin-bottom: 100vh;
 	}
 }
 
