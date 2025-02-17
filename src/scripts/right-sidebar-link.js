@@ -1,5 +1,5 @@
 document.addEventListener("astro:page-load", (event) => {
-	const URL = window.location.href.split("#")[0];
+	const URL = window.location.href.split("#")[0].replace(/\/$/, "");
 
 	for (const item of document.querySelectorAll("#blogs-link-table div div a")) {
 		if (item.href === URL) {
