@@ -36,7 +36,6 @@ hr {
 	flex-direction: column;
 	align-self: center;
 	width: 310px;
-	margin-bottom: 100vh;
 }
 
 @media screen and (min-width: 350px) {
