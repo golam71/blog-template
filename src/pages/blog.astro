@@ -6,7 +6,7 @@ const pageTitle = "My Astro Learning Blog";
 const allPosts = await getCollection("blog");
 
 // Group posts by module (directory)
-const groupedPosts = allPosts.reduce((acc: { [key: string]: typeof allPosts }, post) => {
+const groupedPosts = allPosts.reduce((acc, post) => {
   const parts = post.id.split("/"); // Extract module name
   const moduleName = parts[0];
 
@@ -19,10 +19,10 @@ const groupedPosts = allPosts.reduce((acc: { [key: string]: typeof allPosts }, p
 }, {});
 
 // Extract top 5 tags per module
-const getTopTags = (posts: typeof allPosts) => {
+const getTopTags = (posts) => {
   const tagCounts = posts
     .flatMap((post) => post.data.tags || [])
-    .reduce((acc: { [key: string]: number }, tag) => {
+    .reduce((acc, tag) => {
       acc[tag] = (acc[tag] || 0) + 1;
       return acc;
     }, {});
@@ -43,12 +43,13 @@ const getTopTags = (posts: typeof allPosts) => {
           a.id.localeCompare(b.id, undefined, { numeric: true }),
         );
 
-        const topTags = getTopTags(sortedPosts); // Get top 5 tags
+        const topTags = getTopTags(sortedPosts);
+        const coverImage = `${import.meta.env.BASE_URL}/images/${module}/cover.png`; // Ensure correct path
 
         return (
           <details>
-            <summary >
-              <div>
+            <summary>
+              <div class="module-header">
                 <h3>
                   <a
                     href={`${import.meta.env.BASE_URL}/posts/${sortedPosts[0].id}/`}
@@ -56,29 +57,52 @@ const getTopTags = (posts: typeof allPosts) => {
                     {module} ({sortedPosts.length})
                   </a>
                 </h3>
+                <img
+                  class="module-cover"
+                  src={coverImage}
+                  alt={`${module} cover`}
+                  onError={(e) => (e.target.style.display = "none")}
+                />
               </div>
             </summary>
 
             <div id="tag-container">
               {topTags.map((tag) => (
-                <a
-                  id="tag"
-                  href={`${import.meta.env.BASE_URL}/tags/${tag}`}
-        
-                >
+                <a id="tag" href={`${import.meta.env.BASE_URL}/tags/${tag}`}>
                   #{tag}
                 </a>
               ))}
             </div>
 
             <ul>
-              {sortedPosts.map((post) => (
-                <li id={post.id}>
-                  <a href={`${import.meta.env.BASE_URL}/posts/${post.id}/`}>
-                    {post.data.title}
-                  </a>
-                </li>
-              ))}
+              {sortedPosts.map((post) => {
+                const postImage = `${import.meta.env.BASE_URL}/images/${module}/${post.id.split("/").pop()}.png`; // Small post image
+                return (
+                  <li id={post.id} class="post-item">
+                    <div class="post-content">
+                      <a href={`${import.meta.env.BASE_URL}/posts/${post.id}/`}>
+                        {post.data.title}
+                      </a>
+                      <div class="post-tags">
+                        {post.data.tags &&
+                          post.data.tags.map((tag) => (
+                            <a
+                              id="tag"
+                              href={`${import.meta.env.BASE_URL}/tags/${tag}`}
+                            >
+                              #{tag}
+                            </a>
+                          ))}
+                      </div>
+                    </div>
+                    <img
+                      class="post-thumbnail"
+                      src={postImage}
+                      alt={post.data.title}
+                    />
+                  </li>
+                );
+              })}
             </ul>
           </details>
         );
@@ -88,12 +112,9 @@ const getTopTags = (posts: typeof allPosts) => {
 </BaseLayout>
 
 <style>
-  h3 {
-    line-height: 0.3 !important;
-  }
-  section {
+  .blog-modules {
     padding: 10px;
-    max-width: 800px;
+    max-width: 1000px;
     margin: auto;
   }
 
@@ -108,69 +129,64 @@ const getTopTags = (posts: typeof allPosts) => {
   summary {
     cursor: pointer;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .module-header {
+    display: flex;
     align-items: center;
     justify-content: space-between;
+    width: 100%;
   }
 
-  summary div {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  details a {
-    color: var(--text);
-  }
-
-  ul a {
-    background-color: var(--main-bg);
-    display: block !important;
-    padding: 5px 20px;
-    margin: 10px;
+  .module-cover {
+    margin: 0px;
+    height: 200px;
+    width: min-content;
+    object-fit: cover;
     border-radius: var(--radius);
+    margin-left: auto;
   }
 
-  details a:hover {
-    color: var(--accent);
-  }
-
-  div {
+  #tag-container {
+    border-radius: var(--radius);
+    padding: 20px;
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
   }
 
-  div a {
-    color: var(--accent) !important;
+  #tag {
+    color: var(--main-bg) !important;
+    padding: 1px 10px;
+    font-size: 13px;
+    font-weight: 600;
+    background: var(--accent);
+    border-radius: 9999px;
   }
 
-  a {
-    display: inline !important;
+  .post-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: var(--radius);
+    background: var(--main-bg);
+    margin: 20px;
+    padding: 20px;
   }
 
-
-  #tag-container{
-/*   background: var(--main-bg); */
-  border-radius: var(--radius);
-  padding: 20px;
-  display: flex;
-}
-
-#tag{
-  line-height: 1;
-  color:var(--main-bg) !important;
-  padding: 4px 10px;
-  font-size: 13px;
-  font-weight: 600;
-  background: var(--accent);
-  border-radius:9999px;
-
-}
-  ul {
-    padding-left: 20px !important;
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
     margin-top: 5px;
   }
 
-
-
+  .post-thumbnail {
+    margin: 0px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: var(--radius);
+  }
 </style>
