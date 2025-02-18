@@ -63,15 +63,6 @@ async function ensureImageFiles(directory) {
 			latestDate = data.pubDate;
 		}
 
-		pubDate =
-			pubDate !== "Unknown Date"
-				? new Intl.DateTimeFormat("en-GB", {
-						day: "numeric",
-						month: "short",
-						year: "numeric",
-					}).format(new Date(pubDate.split("/").reverse().join("-")))
-				: pubDate;
-
 		const fileNameWithoutExt = path.parse(file).name;
 		const imagePath = path.join(targetImageDir, `${fileNameWithoutExt}.png`);
 
@@ -94,19 +85,10 @@ async function ensureImageFiles(directory) {
 		.slice(0, 5)
 		.map(([tag]) => `#${tag}`);
 
-	const formattedLatestDate =
-		latestDate !== "2000-01-01"
-			? new Intl.DateTimeFormat("en-GB", {
-					day: "numeric",
-					month: "short",
-					year: "numeric",
-				}).format(new Date(latestDate.split("/").reverse().join("-")))
-			: "Unknown Date";
-
 	const mainImagePath = path.join(targetImageDir, `cover.png`);
 	if (!fs.existsSync(mainImagePath)) {
 		execSync(
-			`node ${ogScript} --text "${dirName}" --tags "${topTags.length > 0 ? topTags.join(",") : "#general"}" --date "${formattedLatestDate}" --bg "${mainBg}" --fg "${accent}" --border1Color "#00000000" --border2Color "${accent}" --borderRadius 70 --fontSize 60 -h 1000 -w 1200 -o "${mainImagePath}"`,
+			`node ${ogScript} --text "${dirName}" --tags "${topTags.length > 0 ? topTags.join(",") : "#general"}" --date "${latestDate}" --bg "${mainBg}" --fg "${accent}" --border1Color "#00000000" --border2Color "${accent}" --borderRadius 70 --fontSize 60 -h 1000 -w 1200 -o "${mainImagePath}"`,
 		);
 		createdImages++;
 	} else {
