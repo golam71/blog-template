@@ -8,7 +8,6 @@
 
 	--opacity: 50%;
 	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
-	/*--border-color:var(--dark-bg);*/
 	--radius: 10px;
 	--table-border-width: 2px;
 }
