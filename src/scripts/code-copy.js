@@ -26,7 +26,8 @@ style.innerHTML = `
 document.head.appendChild(style);
 
 // Add copy button to all <pre class="astro-code"> elements
-document.querySelectorAll("pre.astro-code").forEach(pre => {
+const preElements = document.querySelectorAll("pre.astro-code");
+for (const pre of preElements) {
     const button = document.createElement("button");
     button.innerText = "Copy 🗐";
     button.classList.add("copy-button");
@@ -38,10 +39,12 @@ document.querySelectorAll("pre.astro-code").forEach(pre => {
         try {
             await navigator.clipboard.writeText(code);
             button.innerText = "Copied!";
-            setTimeout(() => button.innerText = "Copy", 2000);
+            setTimeout(() => {
+                button.innerText = "Copy";
+            }, 2000);
         } catch (err) {
             console.error("Failed to copy!", err);
             button.innerText = "Failed!";
         }
     });
-});
+}
