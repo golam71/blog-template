@@ -281,13 +281,38 @@ p.tag a {
 /* https://support.google.com/chrome/thread/269613337/why-is-the-chrome-scrollbar-still-so-ugly?hl=en */
 
 * {
-	scrollbar-color: var(--accent) var(--dark-bg);
-	scrollbar-width: none;
 	scroll-behavior: smooth;
 }
+/* firefox scrollbar only needs color  */
 
+/* FIREFOX */
 @-moz-document url-prefix("") {
 	* {
-		scrollbar-width: auto;
+		scrollbar-color: var(--accent) transparent;
+	}
+}
+
+/* Custom scrollbar styles for WebKit browsers */
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--accent);
+	border-radius: 10px;
+	border: 2px solid transparent;
+	background-clip: content-box;
+}
+
+.table-of-contents,
+.blogs-link-table {
+	scrollbar-width: none !important;
+	::-webkit-scrollbar {
+		display: none !important;
 	}
 }
