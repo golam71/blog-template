@@ -20,6 +20,12 @@ document.addEventListener('astro:page-load', () => {
             position: relative;
         }
 
+        @media (max-width: 1350px) {
+            pre.astro-code:focus .copy-button {
+                display: block; /* Show button on focus */
+            }
+        }
+
         pre.astro-code:hover .copy-button {
             display: block; /* Show button on hover */
         }
