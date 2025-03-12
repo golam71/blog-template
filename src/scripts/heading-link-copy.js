@@ -9,6 +9,7 @@ document.addEventListener('astro:page-load', () => {
                 .accent { color: var(--accent); }
                 .heading-link { cursor: pointer; margin: 10px ; padding:10px; visibility: hidden; }
                 :is(h1, h2, h3, h4, h5, h6):hover .heading-link { visibility: visible; }
+                :is(h1, h2, h3, h4, h5, h6):active .heading-link { visibility: visible; }
                 :is(h1, h2, h3, h4, h5, h6):hover { cursor: pointer; }
             `,
         }),
