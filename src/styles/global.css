@@ -9,7 +9,7 @@
 	--opacity: 50%;
 	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
 	--radius: 10px;
-	--table-border-width: 2px;
+	--table-border-width: 1px;
 }
 
 body {
@@ -146,101 +146,105 @@ li::marker {
 }
 
 /*table*/
+/* Table base styles */
 table.article-table {
-	width: 100%;
+  width: 100%;
 }
+
 table {
-	/* width: 100%; */
-	border-spacing: 0;
-	/* border-collapse: collapse; */
-	font-size: 16px;
-	margin: 0 auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 16px;
+  margin: 0 auto;
 }
 
 td {
-	font-size: 14px;
+  font-size: 14px;
 }
 
+/* Reset all borders first */
 .main-stuff td,
 .main-stuff th {
-	padding: 5px 10px !important;
-	border: calc(var(--table-border-width) / 2) solid var(--border-color);
+  padding: 5px 10px !important;
+  border: none;
 }
 
 .article-table td {
-	min-width: 90px;
+  min-width: 90px;
 }
+
 .article-table tr td:first-child {
-	width: 100px;
+  width: 100px;
 }
 
-/* //left most columns left side */
-tr td:first-child,
-tr th:first-child {
-	border-left: var(--table-border-width) solid var(--border-color);
+/* Apply borders only where needed */
+/* Right borders for all cells except last column */
+.main-stuff td:not(:last-child),
+.main-stuff th:not(:last-child) {
+  border-right: var(--table-border-width) solid var(--border-color);
 }
 
-/* //right most columns right side */
-tr td:last-child,
-tr th:last-child {
-	border-right: var(--table-border-width) solid var(--border-color);
+/* Bottom borders for all cells except last row */
+.main-stuff tbody tr:not(:last-child) td,
+.main-stuff thead tr th {
+  border-bottom: var(--table-border-width) solid var(--border-color);
 }
 
-/* the bottom most rows bottom side  */
-tbody tr:last-child td {
-	border-bottom: var(--table-border-width) solid var(--border-color);
+/* Apply outer borders */
+/* Left border for first column */
+.main-stuff tr td:first-child,
+.main-stuff tr th:first-child {
+  border-left: var(--table-border-width) solid var(--border-color);
 }
 
-/* //table radius */
-/* top left */
-thead tr th:first-child {
-	border-top-left-radius: var(--radius);
+/* Right border for last column */
+.main-stuff tr td:last-child,
+.main-stuff tr th:last-child {
+  border-right: var(--table-border-width) solid var(--border-color);
 }
 
-/* top right */
-thead tr th:last-child {
-	border-top-right-radius: var(--radius);
+/* Bottom border for last row */
+.main-stuff tbody tr:last-child td {
+  border-bottom: var(--table-border-width) solid var(--border-color);
 }
 
-/* bottom left  */
-tbody tr:last-child td:first-child {
-	border-bottom-left-radius: var(--radius);
-}
-
-/* Bottom-right corner cell (last cell of the last row) */
-tbody tr:last-child td:last-child {
-	border-bottom-right-radius: var(--radius);
-}
-
-/* the article table stuff as ina uthor name and stuff that doesnt have thead  */
-/* it has direct body */
-.article-table tbody tr:first-of-type td:first-of-type {
-	border-top-left-radius: var(--radius);
-}
-
-.article-table tbody tr:first-of-type td:last-of-type {
-	border-top-right-radius: var(--radius);
-}
-
-/* the top most tbodys top side */
+/* Top border for first row */
+.main-stuff thead tr th,
 .article-table tbody tr:first-child td {
-	border-top: var(--table-border-width) solid var(--border-color);
+  border-top: var(--table-border-width) solid var(--border-color);
 }
 
-/* the first rows top most side */
-
-th {
-	border-top: var(--table-border-width) solid var(--border-color) !important;
-}
-
+/* Header background */
 thead tr th {
-	background-color: var(--dark-bg);
+  background-color: var(--dark-bg);
 }
 
+/* Zebra striping for regular tables */
 .main-stuff tr:nth-of-type(even):not(.article-table tr) td {
-	background-color: var(--dark-bg);
+  background-color: var(--dark-bg);
 }
 
+/* Border radius - top left */
+.main-stuff thead tr th:first-child,
+.article-table tbody tr:first-of-type td:first-of-type {
+  border-top-left-radius: var(--radius);
+}
+
+/* Border radius - top right */
+.main-stuff thead tr th:last-child,
+.article-table tbody tr:first-of-type td:last-of-type {
+  border-top-right-radius: var(--radius);
+}
+
+/* Border radius - bottom left */
+.main-stuff tbody tr:last-child td:first-child {
+  border-bottom-left-radius: var(--radius);
+}
+
+/* Border radius - bottom right */
+.main-stuff tbody tr:last-child td:last-child {
+  border-bottom-right-radius: var(--radius);
+}
 /*tags */
 p.tag {
 	display: inline;
