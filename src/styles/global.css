@@ -100,7 +100,7 @@ img {
 /* inline code */
 code:not(.astro-code code) {
 	/* background-color: var(--dark-bg); */
-	/* color: var(--accent); */
+	color: var(--accent);
 }
 
 /*multiline code */
