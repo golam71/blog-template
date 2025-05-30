@@ -6,16 +6,16 @@ import mdx from "@astrojs/mdx";
 import icon from "astro-icon";
 
 //htb vscode theme https://github.com/silofy/hackthebox/blob/master/themes/HackTheBox-Lite.json
-import hackthebox from "./hackthebox-lite.json";
+import hackthebox from "./hackthebox.json";
 
 // https://astro.build/config
 export default defineConfig({
-	base: "/blog-template",
-	// site: "https://example.com",
-	integrations: [preact(), mdx(), icon()],
-	markdown: {
-		shikiConfig: {
-			theme: JSON.parse(JSON.stringify(hackthebox)),
-		},
-	},
+  base: "/blog-template",
+  // site: "https://example.com",
+  integrations: [preact(), mdx(), icon()],
+  markdown: {
+    shikiConfig: {
+      theme: JSON.parse(JSON.stringify(hackthebox)),
+    },
+  },
 });

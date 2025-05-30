@@ -1,76 +1,77 @@
 :root {
-	--main-bg: #141d2b;
-	--dark-bg: #0b121f;
+  --main-bg: #141d2b;
+  --dark-bg: #0b121f;
+  --light-bg: #1a2332;
 
-	--text: #a4b1cd;
-	--accent: #9fef00;
-	--heading: #cad2e2;
+  --text: #a4b1cd;
+  --accent: #9fef00;
+  --heading: #cad2e2;
 
-	--opacity: 50%;
-	--border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
-	--radius: 10px;
-	--table-border-width: 1px;
+  --opacity: 50%;
+  --border-color: color-mix(in srgb, currentColor var(--opacity), transparent);
+  --radius: 10px;
+  --table-border-width: 1px;
 }
 
 body {
-	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-	font-size: 16px;
-	background-color: var(--main-bg);
-	color: var(--text);
-	line-height: 2;
+  font-family: sans-serif;
+  font-size: 16px;
+  background-color: var(--main-bg);
+  color: var(--text);
+  line-height: 2;
 }
 
 hr {
-	opacity: var(--opacity);
-	display: block;
-	height: 1px;
-	border: 0;
-	border-top: 1px solid var(--text);
-	margin: 1em 0;
-	padding: 0;
+  opacity: var(--opacity);
+  display: block;
+  height: 1px;
+  border: 0;
+  border-top: 1px solid var(--text);
+  margin: 1em 0;
+  padding: 0;
 }
 
 .main-stuff > main {
-	display: flex;
-	flex-direction: column;
-	align-self: center;
-	width: 310px;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  width: 310px;
 }
 
 @media screen and (min-width: 350px) {
-	.main-stuff > main {
-		width: 340px;
-	}
+  .main-stuff > main {
+    width: 340px;
+  }
 }
 
 @media screen and (min-width: 400px) {
-	.main-stuff > main {
-		width: 400px !important;
-	}
+  .main-stuff > main {
+    width: 400px !important;
+  }
 }
 
-@media screen and (min-width: 700px) {
-	.main-stuff > main {
-		width: 700px !important;
-		padding: 0px 20px;
-		font-size: 18px;
-		margin-bottom: 100vh;
-	}
+@media screen and (min-width: 800px) {
+  .main-stuff > main {
+    width: 800px !important;
+    padding: 0px 20px;
+    font-size: 18px;
+    margin-bottom: 100vh;
+  }
 }
 
 img {
-	border-radius: var(--radius);
-	margin: 0 auto;
-	max-width: 100%;
+  border-radius: var(--radius);
+  margin: 0 auto;
+  max-width: 100%;
 }
 
 a {
-	color: var(--accent);
-	text-decoration: none;
+  color: var(--accent);
+  text-decoration: none;
 }
 
 a:hover {
-	text-decoration: underline;
+  text-decoration: underline;
 }
 
 h1,
@@ -79,70 +80,74 @@ h3,
 h4,
 h5,
 h6 {
-	color: var(--heading);
-	/* margin-top: 10px; */
+  color: var(--heading);
+  /* margin-top: 10px; */
 }
 
 blockquote {
-	background-color: var(--dark-bg);
-	border-radius: var(--radius);
-	border-left: 4px solid var(--accent);
-	padding: 1px 20px;
-	margin: 0 auto;
+  background-color: var(--dark-bg);
+  border-radius: var(--radius);
+  border-left: 4px solid var(--accent);
+  padding: 1px 20px;
+  margin: 0 auto;
 }
 
 img {
-	max-width: 100%;
-	height: auto;
-	display: block;
+  max-width: 100%;
+  height: auto;
+  display: block;
 }
 
 /* inline code */
 code:not(.astro-code code) {
-	/* background-color: var(--dark-bg); */
-	color: var(--accent);
+  /* background-color: var(--dark-bg); */
+  color: var(--accent);
 }
 
 /*multiline code */
 .astro-code {
-	padding: 10px;
-	font-size: 15px;
-	font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
-	border-radius: var(--radius);
+  padding: 10px;
+  font-size: 15px;
+  font-family: cursive !important;
+  border-radius: var(--radius);
+}
+
+.astro-code code {
+  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
 }
 
 /* // code with line numbers  */
 code {
-	counter-reset: step;
-	counter-increment: step 0;
+  counter-reset: step;
+  counter-increment: step 0;
 }
 
 code .line::before {
-	content: counter(step);
-	counter-increment: step;
-	width: 1rem;
-	margin-right: 1.5rem;
-	display: inline-block;
-	text-align: right;
-	color: rgba(115, 138, 148, 0.4);
+  content: counter(step);
+  counter-increment: step;
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: rgba(115, 138, 148, 0.4);
 }
 
 li::marker {
-	color: var(--accent);
+  color: var(--accent);
 }
 
 .nav-links {
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .nav-links > * {
-	margin: 10px;
+  margin: 10px;
 }
 
 ::selection {
-	background-color: var(--accent);
-	color: var(--main-bg);
+  background-color: var(--accent);
+  color: var(--main-bg);
 }
 
 /*table*/
@@ -247,76 +252,77 @@ thead tr th {
 }
 /*tags */
 p.tag {
-	display: inline;
+  display: inline;
 }
 
 p.tag a {
-	display: inline-block;
-	font-weight: 600;
-	color: var(--main-bg);
-	background-color: var(--accent);
-	border-radius: 20px;
-	padding: 0px 10px;
+  display: inline-block;
+  font-weight: 600;
+  color: var(--main-bg);
+  background-color: var(--accent);
+  border-radius: 20px;
+  padding: 0px 10px;
 }
 
 /* transitions animations  */
-* {
-	transition: all 0.3s ease;
+*:not(span,div,pre) {
+  transition: all 0.3s ease;
 }
 
 @keyframes fadeInUp {
-	from {
-		opacity: 0;
-		transform: translateY(10px);
-	}
-	to {
-		opacity: 1;
-		transform: translateY(0);
-	}
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .animate {
-	opacity: 0;
-	/* Initially hidden */
-	animation: fadeInUp 0.3s ease-out forwards;
+  opacity: 0;
+  /* Initially hidden */
+  animation: fadeInUp 0.3s ease-out forwards;
 }
 
 /*scrollbar hide in chrome cause ungly */
 /* https://support.google.com/chrome/thread/269613337/why-is-the-chrome-scrollbar-still-so-ugly?hl=en */
 
 * {
-	scroll-behavior: smooth;
+  scroll-behavior: smooth;
+  outline: none;
 }
 /* firefox scrollbar only needs color  */
 
 /* FIREFOX */
 @-moz-document url-prefix("") {
-	* {
-		scrollbar-color: var(--accent) transparent;
-	}
+  * {
+    scrollbar-color: var(--accent) transparent;
+  }
 }
 
 /* Custom scrollbar styles for WebKit browsers */
 ::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-	background: transparent;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-	background-color: var(--accent);
-	border-radius: 10px;
-	border: 2px solid transparent;
-	background-clip: content-box;
+  background-color: var(--accent);
+  border-radius: 10px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
 .table-of-contents,
 .blogs-link-table {
-	scrollbar-width: none !important;
-	::-webkit-scrollbar {
-		display: none !important;
-	}
+  scrollbar-width: none !important;
+  ::-webkit-scrollbar {
+    display: none !important;
+  }
 }

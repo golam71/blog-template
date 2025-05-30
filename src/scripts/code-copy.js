@@ -6,7 +6,7 @@ document.addEventListener('astro:page-load', () => {
             position: absolute;
             top: 8px;
             right: 8px;
-            background: var(--main-bg, rgba(0, 0, 0, 0.7)); /* Use CSS variable */
+            background: var(--dark-bg, rgba(0, 0, 0, 0.7)); /* Use CSS variable */
             color: var(--heading);
             border: none;
             padding: 5px 10px;

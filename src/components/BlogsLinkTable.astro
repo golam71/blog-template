@@ -5,138 +5,134 @@ const { moduleName } = Astro.props; // Receive module name statically
 const matches = import.meta.glob("../blog/**/*.{md,mdx}", { eager: true });
 
 const posts = Object.entries(matches)
-    .filter(([path]) => path.includes(`../blog/${moduleName}/`)) // Filter by moduleName
-    .map(([path, post]) => {
-        const slug = path
-            .replace("../blog/", "posts/")
-            .replace(/\.(md|mdx)$/, "");
+  .filter(([path]) => path.includes(`../blog/${moduleName}/`)) // Filter by moduleName
+  .map(([path, post]) => {
+    const slug = path.replace("../blog/", "posts/").replace(/\.(md|mdx)$/, "");
 
-        return {
-            ...(post && typeof post === "object"
-                ? { ...post, frontmatter: post.frontmatter || {} }
-                : {}),
-            slug,
-        };
-    });
+    return {
+      ...(post && typeof post === "object"
+        ? { ...post, frontmatter: post.frontmatter || {} }
+        : {}),
+      slug,
+    };
+  });
 
 const sortedPosts = [...posts].sort((a, b) =>
-    a.slug.localeCompare(b.slug, undefined, { numeric: true }),
+  a.slug.localeCompare(b.slug, undefined, { numeric: true })
 );
 
 const postsByTopic = sortedPosts.reduce((acc, post) => {
-    const topic = post.frontmatter?.topic || "other"; // Default to "Other"
-    if (!acc[topic]) acc[topic] = [];
-    acc[topic].push(post);
-    return acc;
+  const topic = post.frontmatter?.topic || "other"; // Default to "Other"
+  if (!acc[topic]) acc[topic] = [];
+  acc[topic].push(post);
+  return acc;
 }, {});
 ---
 
 <div class="blogs-link-table" id="blogs-link-table">
-    <h3>Table of Blogs</h3>
-    {
-        Object.entries(postsByTopic).map(([topic, posts]) => (
-            <>
-                <h4>
-                    <a href={`#${topic}`}>{topic}</a>
-                </h4>
-                <div>
-                    {posts.map((post) => (
-                        <div id={post.slug}>
-                            <a
-                                href={`${import.meta.env.BASE_URL}/${post.slug}`}
-                            >
-                                {post.frontmatter?.title ?? "Untitled"}
-                            </a>
-                        </div>
-                    ))}
-                </div>
-            </>
-        ))
-    }
+  <h3>Table of Blogs</h3>
+  {
+    Object.entries(postsByTopic).map(([topic, posts]) => (
+      <>
+        <h4>
+          <a href={`#${topic}`}>{topic}</a>
+        </h4>
+        <div>
+          {posts.map((post) => (
+            <div id={post.slug}>
+              <a href={`${import.meta.env.BASE_URL}/${post.slug}`}>
+                {post.frontmatter?.title ?? "Untitled"}
+              </a>
+            </div>
+          ))}
+        </div>
+      </>
+    ))
+  }
 </div>
 
 <style>
+  .blogs-link-table {
+    font-size: 14px;
+    padding: 0px 10px;
+    z-index: 5;
+    background-color: var(--dark-bg);
+    position: fixed !important;
+    top: 0px;
+    left: -100vw;
+    /* left: 0px !important; */
+    width: 220px;
+    height: 100vh;
+    overflow-y: scroll;
+    transition: * 0.3s ease; /*Smooth transition for top and on mobile from left*/
+  }
+
+  .blogs-link-table div div {
+    background-color: var(--main-bg);
+    margin: 10px 0px;
+    border-radius: var(--radius);
+  }
+  .blogs-link-table div:last-of-type div:last-child {
+    margin-bottom: 10vh;
+  }
+
+  @media screen and (min-width: 1350px) {
+    .blogs-link-table h3 {
+      padding-top: 10px;
+      background-color: var(--main-bg);
+    }
     .blogs-link-table {
-        font-size: 16px;
-        padding: 0px 10px;
-        z-index: 5;
-        background-color: var(--dark-bg);
-        position: fixed !important;
-        top: 0px;
-        left: -100vw;
-        /* left: 0px !important; */
-        width: 280px;
-        height: 100vh;
-        overflow-y: scroll;
-        transition: * 0.3s ease; /*Smooth transition for top and on mobile from left*/
+      top: 100px; /* Always 0px for smaller screens */
+      left: unset !important;
+      right: calc(50vw + 415px) !important;
+      padding: 0px 20px;
+      background-color: var(--main-bg);
     }
-
+    /* here use .blogs-link-table div div for stripes  */
     .blogs-link-table div div {
-        background-color: var(--main-bg);
-        margin: 10px 0px;
-        border-radius: var(--radius);
+      background-color: var(--dark-bg) !important;
     }
-    .blogs-link-table div:last-of-type div:last-child {
-        margin-bottom: 10vh;
-    }
+  }
+  .show-blogs-link-table {
+    left: 0px !important;
+  }
 
-    @media screen and (min-width: 1350px) {
-        .blogs-link-table h3 {
-            padding-top: 10px;
-            background-color: var(--main-bg);
-        }
-        .blogs-link-table {
-            top: 100px; /* Always 0px for smaller screens */
-            left: unset !important;
-            right: calc(50vw + 360px) !important;
-            padding: 0px 20px;
-            background-color: var(--main-bg);
-        }
-        /* here use .blogs-link-table div div for stripes  */
-        .blogs-link-table div div {
-            background-color: var(--dark-bg) !important;
-        }
-    }
-    .show-blogs-link-table {
-        left: 0px !important;
-    }
-
-    .blogs-link-table a {
-        display: block;
-        color: var(--text);
-        padding: 0px 20px;
-    }
-    .blogs-link-table a:hover {
-        text-decoration: none;
-        color: var(--accent);
-    }
-    .top0 {
-        top: 0px;
-    }
-    .top100 {
-        top: 100px;
-    }
-    .hidden {
-        display: none;
-    }
+  .blogs-link-table a {
+    display: block;
+    color: var(--text);
+    padding: 0px 20px;
+  }
+  .blogs-link-table a:hover {
+    text-decoration: none;
+    color: var(--accent);
+  }
+  .top0 {
+    top: 0px;
+  }
+  .top100 {
+    top: 100px;
+  }
+  .hidden {
+    display: none;
+  }
 </style>
 
 <script is:inline>
-    document.addEventListener("scroll", () => {
-        const tlb = document.querySelector("#blogs-link-table");
+  document.addEventListener("scroll", () => {
+    const tlb = document.querySelector("#blogs-link-table");
 
-        if (window.innerWidth > 1350) {
-            // Animation effect for large screens (1200px+)
-            if (window.scrollY > 50) {
-                tlb.classList.remove("top100");
-                tlb.classList.add("top0");
-            } else {
-                tlb.classList.remove("top0");
-                tlb.classList.add("top100");
-            }
-        } else {
-            // No animation for smaller screens (less than 1200px)
-            tlb.classList.add("top0");
-        }
-    });
+    if (window.innerWidth > 1350) {
+      // Animation effect for large screens (1200px+)
+      if (window.scrollY > 50) {
+        tlb.classList.remove("top100");
+        tlb.classList.add("top0");
+      } else {
+        tlb.classList.remove("top0");
+        tlb.classList.add("top100");
+      }
+    } else {
+      // No animation for smaller screens (less than 1200px)
+      tlb.classList.add("top0");
+    }
+  });
 </script>
