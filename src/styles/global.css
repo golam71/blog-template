@@ -26,7 +26,8 @@ hr {
   display: block;
   height: 1px;
   border: 0;
-  border-top: 1px solid var(--text);
+  color: var(--border-color);
+  border-top: 1px solid var(--border-color);
   margin: 1em 0;
   padding: 0;
 }
@@ -111,6 +112,7 @@ code:not(.astro-code code) {
   font-family: cursive !important;
   border-radius: var(--radius);
 }
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 .astro-code code {
   font-family: "JetBrains Mono", "Courier New", Courier, monospace;
@@ -265,7 +267,7 @@ p.tag a {
 }
 
 /* transitions animations  */
-*:not(span,div,pre) {
+*:not(pre) {
   transition: all 0.3s ease;
 }
 

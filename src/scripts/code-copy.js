@@ -1,14 +1,14 @@
-document.addEventListener('astro:page-load', () => {
-    // Inject CSS into the document
-    const style = document.createElement("style");
-    style.innerHTML = `
+document.addEventListener("astro:page-load", () => {
+  // Inject CSS into the document
+  const style = document.createElement("style");
+  style.innerHTML = `
         .copy-button {
             position: absolute;
             top: 8px;
             right: 8px;
-            background: var(--dark-bg, rgba(0, 0, 0, 0.7)); /* Use CSS variable */
+            background: var(--main-bg); /* Use CSS variable */
             color: var(--heading);
-            border: none;
+            border: 1px solid var(--border-color);
             padding: 5px 10px;
             font-size: 12px;
             cursor: pointer;
@@ -30,29 +30,29 @@ document.addEventListener('astro:page-load', () => {
             display: block; /* Show button on hover */
         }
     `;
-    document.head.appendChild(style);
+  document.head.appendChild(style);
 
-    // Add copy button to all <pre class="astro-code"> elements
-    const preElements = document.querySelectorAll("pre.astro-code");
-    for (const pre of preElements) {
-        const button = document.createElement("button");
-        button.innerText = "Copy";
-        button.classList.add("copy-button");
+  // Add copy button to all <pre class="astro-code"> elements
+  const preElements = document.querySelectorAll("pre.astro-code");
+  for (const pre of preElements) {
+    const button = document.createElement("button");
+    button.innerText = "Copy";
+    button.classList.add("copy-button");
 
-        pre.appendChild(button);
+    pre.appendChild(button);
 
-        button.addEventListener("click", async () => {
-            const code = pre.querySelector("code").innerText;
-            try {
-                await navigator.clipboard.writeText(code);
-                button.innerText = "Copied!";
-                setTimeout(() => {
-                    button.innerText = "Copy";
-                }, 500);
-            } catch (err) {
-                console.error("Failed to copy!", err);
-                button.innerText = "Failed!";
-            }
-        });
-    }
+    button.addEventListener("click", async () => {
+      const code = pre.querySelector("code").innerText;
+      try {
+        await navigator.clipboard.writeText(code);
+        button.innerText = "Copied!";
+        setTimeout(() => {
+          button.innerText = "Copy";
+        }, 500);
+      } catch (err) {
+        console.error("Failed to copy!", err);
+        button.innerText = "Failed!";
+      }
+    });
+  }
 });
