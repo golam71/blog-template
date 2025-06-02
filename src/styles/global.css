@@ -1,6 +1,7 @@
 :root {
   --main-bg: #141d2b;
-  --dark-bg: #0b121f;
+/*  --dark-bg: #0b121f; considered too dark*/
+  --dark-bg: #0E1624;
   --light-bg: #1a2332;
 
   --text: #a4b1cd;
