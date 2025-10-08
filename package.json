@@ -1,24 +1,24 @@
 {
-	"name": "golam-ssg",
-	"type": "module",
-	"version": "0.0.1",
-	"private": true,
-	"scripts": {
-		"start": "astro dev",
-		"build": "astro build",
-		"preview": "astro preview",
-		"astro": "astro"
-	},
-	"dependencies": {
-		"@astrojs/mdx": "^4.0.8",
-		"@astrojs/preact": "^4.0.4",
-		"@astrojs/rss": "^4.0.11",
-		"@iconify-json/mdi": "^1.2.3",
-		"astro": "^5.13.3",
-		"astro-icon": "^1.1.5",
-		"canvas": "^3.1.0",
-		"gray-matter": "^4.0.3",
-		"preact": "^10.25.4",
-		"yargs": "^17.7.2"
-	}
+  "name": "golam-ssg",
+  "type": "module",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^4.0.8",
+    "@astrojs/preact": "^4.0.4",
+    "@astrojs/rss": "^4.0.11",
+    "@iconify-json/mdi": "^1.2.3",
+    "astro": "^5.13.3",
+    "astro-icon": "^1.1.5",
+    "canvas": "^3.1.0",
+    "gray-matter": "^4.0.3",
+    "preact": "^10.25.4",
+    "yargs": "^17.7.2"
+  }
 }

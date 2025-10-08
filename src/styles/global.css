@@ -1,7 +1,9 @@
+@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
+
 :root {
   --main-bg: #141d2b;
-/*  --dark-bg: #0b121f; considered too dark*/
-  --dark-bg: #0E1624;
+  /*  --dark-bg: #0b121f; considered too dark*/
+  --dark-bg: #0e1624;
   --light-bg: #1a2332;
 
   --text: #a4b1cd;
@@ -15,7 +17,9 @@
 }
 
 body {
-  font-family: sans-serif;
+  font-family: "Helvetica";
+  
+
   font-size: 16px;
   background-color: var(--main-bg);
   color: var(--text);
@@ -113,7 +117,6 @@ code:not(.astro-code code) {
   font-family: cursive !important;
   border-radius: var(--radius);
 }
-@import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap");
 
 .astro-code code {
   font-family: "JetBrains Mono", "Courier New", Courier, monospace;
