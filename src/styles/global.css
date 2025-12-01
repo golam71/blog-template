@@ -113,12 +113,11 @@ code:not(.astro-code code) {
 .astro-code {
   padding: 10px;
   font-size: 15px;
-  font-family: cursive !important;
   border-radius: var(--radius);
 }
 
 .astro-code code {
-  font-family: "JetBrains Mono", "Courier New", Courier, monospace;
+  font-family: "JetBrains Mono",  monospace;
 }
 
 /* // code with line numbers  */
